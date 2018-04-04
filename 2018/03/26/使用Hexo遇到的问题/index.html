@@ -94,7 +94,7 @@
 <meta property="og:description" content="使用Hexo过程中的问题收集目前格式来不及排版，有空更新">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://759716722.github.io/blog/imgs/loading.gif">
-<meta property="og:updated_time" content="2018-04-04T09:24:01.983Z">
+<meta property="og:updated_time" content="2018-04-04T15:38:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo遇到的问题">
 <meta name="twitter:description" content="使用Hexo过程中的问题收集目前格式来不及排版，有空更新">
@@ -169,7 +169,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">记录工作问题</p>
+        <p class="site-subtitle">问题记录及总结</p>
       
   </div>
 
@@ -326,7 +326,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-04T17:24:01+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-04T23:38:24+08:00">
                 2018-04-04
               </time>
             
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  846
+                  886
                 </span>
               
 
@@ -435,6 +435,7 @@
 <ol start="8">
 <li>在本地server成功，显示没有问题，但是部署到github上之后，就无法显示主题和图片了<br>更改一下_config.yml文件，其中的url和root属性。<br> url: <a href="https://759716722.github.io/blog/">https://759716722.github.io/blog/</a><br> root: /blog<br>root 下面应该设置成 /你的项目名 而不是/，然后重新部署一下就成功了。</li>
 </ol>
+<p>分类栏目不展示分类目录，是因为新建的categories的index.md 未加入 type: “categories” ，导致无法显示分类目录，标签也一样 </p>
 <p>图片引用出不来</p>
 <p>本来以为是因为站点配置文件的post_asset_folder选项没有打开，结果不是因为这个问题，<br>图片引用采用的是相对路径，因此引用时必须要到相应的目录，通过public目录可以知道<br>文章的页面目录为：public\2018\04\04\文章名\<br>引用图片为 ：  <img src="../../../../imgs/loading.gif" alt="小清新"></p>
 <p>打开文章的更新时间<br>搜索 post_meta 将 updated_at 设置为 true</p>
@@ -554,7 +555,7 @@
                 alt="wyb" />
             
               <p class="site-author-name" itemprop="name">wyb</p>
-              <p class="site-description motion-element" itemprop="description">记录点滴</p>
+              <p class="site-description motion-element" itemprop="description">总结学习内容便于日后查阅</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -574,10 +575,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/blog/categories/index.html">
                   <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
