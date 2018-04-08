@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="使用Hexo过程中的问题收集">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-05T16:14:21.174Z">
+<meta property="og:updated_time" content="2018-04-08T02:37:23.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo遇到的问题">
 <meta name="twitter:description" content="使用Hexo过程中的问题收集">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-06T00:14:21+08:00">
-                2018-04-06
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-08T10:37:23+08:00">
+                2018-04-08
               </time>
             
           </span>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  944
+                  1,179
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -439,7 +439,11 @@
 </li>
 </ol>
 <ol start="13">
-<li>NexT主题自带canvas-nest背景效果不能设置颜色、线条的个数等<br>可以通过修改_layout.swig，外部引用 canvas-nest.min.js 实现<br>打开next/layout/_layout.swig 在之前添加代码(注意不要放在&lt; /head&gt;的后面)<br><code>&lt;script type=&quot;text/javascript&quot; color=&quot;0,0,255&quot; opacity=&#39;0.7&#39; zIndex=&quot;-2&quot; count=&quot;99&quot; src=&quot;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&quot;&gt;&lt;/script&gt;</code><br>color ：线条颜色, 默认: ‘0,0,0’；三个数字分别为(R,G,B)<br>opacity: 线条透明度（0~1）, 默认: 0.5<br>count: 线条的总数量, 默认: 150<br>zIndex: 背景的z-index属性，css属性用于控制所在层的位置, 默认: -1<br>注意这里的zIndex只能比-1小，不然会遮住页面所有点击都无法实现</li>
+<li><p>NexT主题自带canvas-nest背景效果不能设置颜色、线条的个数等<br>可以通过修改_layout.swig，外部引用 canvas-nest.min.js 实现<br>打开next/layout/_layout.swig 在之前添加代码(注意不要放在&lt; /head&gt;的后面)<br><code>&lt;script type=&quot;text/javascript&quot; color=&quot;0,0,255&quot; opacity=&#39;0.7&#39; zIndex=&quot;-2&quot; count=&quot;99&quot; src=&quot;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&quot;&gt;&lt;/script&gt;</code><br>color ：线条颜色, 默认: ‘0,0,0’；三个数字分别为(R,G,B)<br>opacity: 线条透明度（0~1）, 默认: 0.5<br>count: 线条的总数量, 默认: 150<br>zIndex: 背景的z-index属性，css属性用于控制所在层的位置, 默认: -1<br>注意这里的zIndex只能比-1小，不然会遮住页面所有点击都无法实现</p>
+</li>
+<li><p>修改背景的透明度<br>通过查看生成的页面HTML的结构，我们会发现侧面导航栏和内容分别引用了 <code>header-inner</code> 和 <code>main-inner</code> 两个class属性，<br>因此我们只需要在 <code>themes\next\source\css_custom\custom.styl</code> 文件中加入如下代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.header-inner</span> &#123; </span><br><span class="line">  opacity: 0.8; //透明度</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.main-inner</span> &#123; </span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.8</span>;</span><br><span class="line">&#125;</span><br><span class="line">// 如果想加入背景图则添加以下代码,注意背景图的引用位置是你存放的位置，如果发布后引用不到，那么就自己去public文件夹下找到css</span><br><span class="line">// 然后算出放图片的文件夹和这个文件夹的相对路径</span><br><span class="line"><span class="selector-tag">body</span> &#123; </span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(../imgs/background.jpg);</span><br><span class="line">    background-attachment: fixed; // 不随屏幕滚动而滚动</span><br><span class="line">    background-repeat: repeat; // 如果背景图不够屏幕大小则重复铺，改为no-repeat则表示不重复铺</span><br><span class="line">    background-size: contain; // 等比例铺满屏幕</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <p>NexT主题配置  <a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="noopener">http://theme-next.iissnan.com/theme-settings.html</a></p>
 <p>NexT主题优化  <a href="https://segmentfault.com/a/1190000013660164" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013660164</a></p>
@@ -640,7 +644,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">2.5k</span>
+    <span title="Site words total count">2.8k</span>
   
 </div>
 
