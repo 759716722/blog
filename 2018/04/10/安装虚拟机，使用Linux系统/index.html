@@ -86,17 +86,17 @@
 
 
 
-<meta name="description" content="使用Hexo过程中的问题收集">
+<meta name="description" content="Windows安装虚拟机、Linux过程中的问题收集">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Hexo遇到的问题">
-<meta property="og:url" content="https://759716722.github.io/blog/2018/03/26/使用Hexo遇到的问题/index.html">
+<meta property="og:title" content="Windows安装虚拟机使用Linux系统">
+<meta property="og:url" content="https://759716722.github.io/blog/2018/04/10/安装虚拟机，使用Linux系统/index.html">
 <meta property="og:site_name" content="魏有标的博客">
-<meta property="og:description" content="使用Hexo过程中的问题收集">
+<meta property="og:description" content="Windows安装虚拟机、Linux过程中的问题收集">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T01:13:43.024Z">
+<meta property="og:updated_time" content="2018-04-11T09:42:36.354Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Hexo遇到的问题">
-<meta name="twitter:description" content="使用Hexo过程中的问题收集">
+<meta name="twitter:title" content="Windows安装虚拟机使用Linux系统">
+<meta name="twitter:description" content="Windows安装虚拟机、Linux过程中的问题收集">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://759716722.github.io/blog/2018/03/26/使用Hexo遇到的问题/"/>
+  <link rel="canonical" href="https://759716722.github.io/blog/2018/04/10/安装虚拟机，使用Linux系统/"/>
 
 
 
 
 
-  <title>使用Hexo遇到的问题 | 魏有标的博客</title>
+  <title>Windows安装虚拟机使用Linux系统 | 魏有标的博客</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/03/26/使用Hexo遇到的问题/">
+    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/04/10/安装虚拟机，使用Linux系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyb">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用Hexo遇到的问题</h1>
+          <h1 class="post-title" itemprop="name headline">Windows安装虚拟机使用Linux系统</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T16:51:11+08:00">
-                2018-03-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T11:04:06+08:00">
+                2018-04-10
               </time>
             
 
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-10T09:13:43+08:00">
-                2018-04-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-11T17:42:36+08:00">
+                2018-04-11
               </time>
             
           </span>
@@ -343,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
+                  <a href="/blog/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,179
+                  1,065
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  4
                 </span>
               
             </div>
@@ -411,42 +411,19 @@
       
 
       
-        <h2 id="使用Hexo过程中的问题收集"><a href="#使用Hexo过程中的问题收集" class="headerlink" title="使用Hexo过程中的问题收集"></a>使用Hexo过程中的问题收集</h2><a id="more"></a>
-<ol>
-<li><p>如果是代理问题把代理去掉就行了<br>npm config set proxy null</p>
-</li>
-<li><p>如果是npm源有问题则使用淘宝npm源<br>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a><br>cnpm install hexo-cli -g</p>
-</li>
-<li><p>如果出现cnpm不是外部命令<br>因为我之前更改了全局模块安装的路径，因此找不到cnpm的可执行文件，需要配置下环境变量即可<br>在系统变量 的 PATH下 加入 cnpm.cmd 所在路径<br>E:\Program Files\nodejs\node_modules\npm\node_global_modules</p>
-</li>
-<li><p>如果不使用淘宝npm源也能成功下载hexo,但是出现hexo不是外部命令<br>原因同上更改了全局模块安装的路径<br>在系统变量 的 PATH下 加入 cnpm.cmd 所在路径<br>E:\Program Files\nodejs\node_modules\npm\node_global_modules</p>
-</li>
-<li><p>Deployer not found: git<br>原因是还需要安装一个插件： npm install hexo-deployer-git</p>
-</li>
-<li><p>hexo g 生成的时候报错原因<br>冒号后面必须有一个空格</p>
-</li>
-<li><p>git下载主题，无法克隆,错误大体描述为“error setting certificate verify locations”<br>git clone的时候出现一个错误，导致无法克隆成功，错误大体描述为“error setting certificate verify locations”，<br>翻译为错误设置证书验证位置，看了本地\Git\mingw64\ssl\certs 下面确实有证书。<br>这个错误是系统证书的问题，系统判断到这个行为会造成不良影响，所以进行了阻止，只要设置跳过SSL证书验证就可以了，<br>用命令 ：<br> git config –global http.sslVerify false<br>设置完成后继续clone，就可以了。</p>
-</li>
-<li><p>在本地server成功，显示没有问题，但是部署到github上之后，就无法显示主题和图片了<br>更改一下_config.yml文件，其中的url和root属性。<br> url: <a href="https://759716722.github.io/blog/">https://759716722.github.io/blog/</a><br> root: /blog<br>root 下面应该设置成 /你的项目名 而不是/，然后重新部署一下就成功了。</p>
-</li>
-<li><p>分类栏目不展示分类目录，是因为新建的categories的index.md 未加入 type: “categories” ，导致无法显示分类目录，标签也一样</p>
-</li>
-<li><p>图片引用出不来<br>本来以为是因为站点配置文件的post_asset_folder选项没有打开，结果不是因为这个问题，<br>post_asset_folder设置为true则每新建一遍文章都会新建相应的资源文件夹，所以不采用这种<br>图片引用采用的是相对路径，因此引用时必须要到相应的目录，通过public目录可以知道<br>文章的页面目录为：public\2018\04\04\文章名\<br>引用图片为 ： <code>![小清新](../../../../imgs/loading.gif)</code></p>
-</li>
-<li><p>打开文章的更新时间<br>搜索 post_meta 将 updated_at 设置为true</p>
-</li>
-<li><p>打开文章的 字数统计、阅读时间功能<br>搜索 post_wordcount 将 wordcount、min2read 设置为 true<br>然后下载 hexo-wordcount 此时我们不进行全局安装，安装在hexo的模块下即可<br>指令： npm install hexo-wordcount</p>
-</li>
+        <h2 id="Windows安装虚拟机、Linux过程中的问题收集"><a href="#Windows安装虚拟机、Linux过程中的问题收集" class="headerlink" title="Windows安装虚拟机、Linux过程中的问题收集"></a>Windows安装虚拟机、Linux过程中的问题收集</h2><a id="more"></a>
+<p>1.首先准备VMware和Linux操作系统镜像</p>
+<p>2.VMware这个软件百度搜下，安装教程很多。我用的版本是14.1.1.28517，这里为了方便以后查找记录几个永久激活密钥。<br>感谢博主<a href="https://blog.csdn.net/qq_26954773/article/details/78128662" target="_blank" rel="noopener">渣渣潘</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CG54H-D8D0H-H8DHY-C6X7X-N2KG6</span><br><span class="line">ZC3WK-AFXEK-488JP-A7MQX-XL8YF</span><br><span class="line">AC5XK-0ZD4H-088HP-9NQZV-ZG2R4</span><br><span class="line">ZC5XK-A6E0M-080XQ-04ZZG-YF08D</span><br><span class="line">ZY5H0-D3Y8K-M89EZ-AYPEG-MYUA8</span><br><span class="line">FF590-2DX83-M81LZ-XDM7E-MKUT4</span><br><span class="line">FF31K-AHZD1-H8ETZ-8WWEZ-WUUVA</span><br><span class="line">CV7T2-6WY5Q-48EWP-ZXY7X-QGUWD</span><br><span class="line">AALYG-20HVE-WHQ13-67MUP-XVMF3</span><br></pre></td></tr></table></figure></p>
+<p>3.Linux操作系统下载，这里选择CentOS。<br><a href="https://www.centos.org/download/" target="_blank" rel="noopener">CentOS下载地址</a><br>选择DVD ISO 进入CentOS下载页面，这里提供了很多的下载连接，选择其中一个下载即可。<br>这里我选择了<a href="http://mirrors.aliyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1708.iso" target="_blank" rel="noopener">aliyun</a><br>详细教程移驾<a href="https://blog.csdn.net/liang19890820/article/details/52093376" target="_blank" rel="noopener">一去丶二三里</a></p>
+<p>4.接下来就是新建虚拟机了，根据版本自行百度图文教程安装即可，注意这里将SWAP分区分为sda2分区就不会出现下面7的情况了。<br>分区原则：配置分区 –&gt; 标准分区 点击 + 添加挂载点<br>/boot是系统挂载点，一般200Mb足够了。<br>swap是交换内存，类似于window的虚拟内存。一般来说，swap的大小是真实内存的两倍。我们刚才的真实内存是1G,所以这里2G。<br>/home是存放普通用户的数据，是普通用户的宿主目录，分配1G。<br>/var ：用来存放 Linux 系统中经常变化的数据以及日志文件，建议大于 1GB 以上。<br>再把剩下的空间分配给/(根目录)。<br><a href="https://www.cnblogs.com/Frankzwf/archive/2016/03/04/5242973.html" target="_blank" rel="noopener">centos-7的图文教程</a><br>详细教程 <a href="http://www.360doc.com/content/15/0715/14/734073_485065070.shtml" target="_blank" rel="noopener">CentOS 7 安装教程、硬盘分区、LVM、网络配置、软件源配置、制作</a></p>
+<p>5.如果遇到 <code>无法连接 MKS: 套接字连接尝试次数太多；正在放弃。</code><br>5.1 打开控制面板—&gt;系统和安全—&gt;管理工具—-&gt;服务 查看VMware Authorization Service这个服务是否启动，我这里发现类型是自动，但是并没有正常启动，折腾了许久，怀疑权限不够然后执行5.2<br>5.2 关闭VMwate的所有进程然后以管理员身份运行VMware，正常启动。</p>
+<p>6.VMware由于某些原因虚拟机并未启动，但是却显示正在运行，此时再次开机出现无法启动问题<br>到相应的虚拟机目录下删除%虚拟机名字%.vmx.lck文件夹或者其中的文件即可，<br>产生问题的原理：我们打开任务管理器，会发现vmware.exe和vmware-vmx.exe两个重要的进程。其中vmware-vmx.exe是主程序，虚拟机在这个进程下运行；VMware.exe是外壳程序，负责显示vmware-vmx.exe中运行的虚拟系统并解释传送各种命令和操作，是我们最常用的VMware用户界面，该程序可重入即同时打开多个。因为VMware Workstation是可重入的，为了避免同一个虚拟系统同时被多个VMware.exe打开操作，造成错误，所以每个VMware打开相应的虚拟机选项卡时都会先检查该虚拟机根目录下是否有*.vmx.lck的文件夹并验证其中的文件，如果该文件中包含合法生成的uuid（通用唯一识别码），那么将无法打开该虚拟机的选项卡。<br><a href="http://www.xuebuyuan.com/2037485.html" target="_blank" rel="noopener">具体参见</a></p>
+<ol start="7">
+<li>登录界面报错 localhost login: [   28.819381] sda2: WRITE SAME failed.Manually zeroing.<br>由于CENTOS 7智能辅助分区，分多个分区的时候SWAP分区会乱窜，将SWAP分区分为sda2分区即解决问题。</li>
 </ol>
-<ol start="13">
-<li><p>NexT主题自带canvas-nest背景效果不能设置颜色、线条的个数等<br>可以通过修改_layout.swig，外部引用 canvas-nest.min.js 实现<br>打开next/layout/_layout.swig 在之前添加代码(注意不要放在&lt; /head&gt;的后面)<br><code>&lt;script type=&quot;text/javascript&quot; color=&quot;0,0,255&quot; opacity=&#39;0.7&#39; zIndex=&quot;-2&quot; count=&quot;99&quot; src=&quot;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&quot;&gt;&lt;/script&gt;</code><br>color ：线条颜色, 默认: ‘0,0,0’；三个数字分别为(R,G,B)<br>opacity: 线条透明度（0~1）, 默认: 0.5<br>count: 线条的总数量, 默认: 150<br>zIndex: 背景的z-index属性，css属性用于控制所在层的位置, 默认: -1<br>注意这里的zIndex只能比-1小，不然会遮住页面所有点击都无法实现</p>
-</li>
-<li><p>修改背景的透明度<br>通过查看生成的页面HTML的结构，我们会发现侧面导航栏和内容分别引用了 <code>header-inner</code> 和 <code>main-inner</code> 两个class属性，<br>因此我们只需要在 <code>themes\next\source\css_custom\custom.styl</code> 文件中加入如下代码：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.header-inner</span> &#123; </span><br><span class="line">  opacity: 0.8; //透明度</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.main-inner</span> &#123; </span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.8</span>;</span><br><span class="line">&#125;</span><br><span class="line">// 如果想加入背景图则添加以下代码,注意背景图的引用位置是你存放的位置，如果发布后引用不到，那么就自己去public文件夹下找到css</span><br><span class="line">// 然后算出放图片的文件夹和这个文件夹的相对路径</span><br><span class="line"><span class="selector-tag">body</span> &#123; </span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(../imgs/background.jpg);</span><br><span class="line">    background-attachment: fixed; // 不随屏幕滚动而滚动</span><br><span class="line">    background-repeat: repeat; // 如果背景图不够屏幕大小则重复铺，改为no-repeat则表示不重复铺</span><br><span class="line">    background-size: contain; // 等比例铺满屏幕</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>NexT主题配置  <a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="noopener">http://theme-next.iissnan.com/theme-settings.html</a></p>
-<p>NexT主题优化  <a href="https://segmentfault.com/a/1190000013660164" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013660164</a></p>
+<p>8.命令行/图形界面<br>安装 X Window System  yum group install “X Window System” -y   不带-y会提示  Is This Ok[y/d/N] y = yes n = no d = download only (只下载不安装)<br>这里为啥安装X Window，是因为其他的GNOME、MATE Desktop ali源没有<br>卸载 X Window Systemyum group remove “GNOME Desktop Environment”<br>systemctl get-default //获取当前系统启动模式<br>systemctl set-default graphical.target   设置为图形界面模式<br>systemctl set-default multi-user.target  设置为命令行多用户模式</p>
+<p>检查已经安装的软件以及可以安装的软件，用命令yum grouplist</p>
+<p>计算并发量的方法<br><a href="https://blog.csdn.net/qq_23101033/article/details/74977874" target="_blank" rel="noopener">https://blog.csdn.net/qq_23101033/article/details/74977874</a></p>
 
       
     </div>
@@ -471,8 +448,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/03/26/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/blog/2018/04/10/安装、使用Redis/" rel="next" title="Redis">
+                <i class="fa fa-chevron-left"></i> Redis
               </a>
             
           </div>
@@ -481,8 +458,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2018/04/04/Markdown语法/" rel="prev" title="Markdown语法">
-                Markdown语法 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2018/04/12/文章收集/" rel="prev" title="文章收集">
+                文章收集 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -610,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Hexo过程中的问题收集"><span class="nav-number">1.</span> <span class="nav-text">使用Hexo过程中的问题收集</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows安装虚拟机、Linux过程中的问题收集"><span class="nav-number">1.</span> <span class="nav-text">Windows安装虚拟机、Linux过程中的问题收集</span></a></li></ol></div>
             
 
           </div>
