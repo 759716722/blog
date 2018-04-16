@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="Mybatis多数据源">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-16T09:14:53.603Z">
+<meta property="og:updated_time" content="2018-04-16T09:20:23.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mybatis多数据源">
 <meta name="twitter:description" content="Mybatis多数据源">
@@ -324,7 +324,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-16T17:14:53+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-16T17:20:23+08:00">
                 2018-04-16
               </time>
             
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,359
+                  1,517
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  7
                 </span>
               
             </div>
@@ -421,118 +421,10 @@
 <li><p>相关配置<br>MyBatis可以配置多种环境（开发、测试和生产环境），但是每个SqlSessionFactory 实例只能选择一个环境。每个数据库对应一个SqlSessionFactory 实例。所以，如果你想连接两个数据库，就需要创建两个SqlSessionFactory 实例，每个数据库对应一个。而如果是三个数据库，就需要三个实例，依此类推。</p>
 </li>
 </ol>
-<p>环境示例配置如下:</p>
-<environments default="development"><br>    <environment id="development"><br>        <transactionmanager tybe="JDBC"><br>            <property name="..." value="..."><br>        </property></transactionmanager><br>        <datasource type="POOLED"><br>            <property name="driver" value="${driver}"><br>            <property name="ur1" value="${url}"><br>            <property name="username" value="${username }"><br>            <property name="password" value="${password}"><br>        </property></property></property></property></datasource><br>    </environment><br></environments>
-
+<p>环境示例配置如下:<br><figure class="highlight plain"><figcaption><span>XML</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;environments default=&quot;development&quot;&gt;</span><br><span class="line">	&lt;environment id=&quot;development&quot;&gt;</span><br><span class="line">		&lt;transactionManager tybe=&quot;JDBC&quot;&gt;</span><br><span class="line">			&lt;property name=&quot;...&quot; value=&quot;...&quot;/&gt;</span><br><span class="line">		&lt;/transactionManager&gt;</span><br><span class="line">		&lt;dataSource type=&quot;POOLED&quot; &gt;</span><br><span class="line">			&lt;property name=&quot;driver&quot; value=&quot;$&#123;driver&#125;&quot;/&gt;</span><br><span class="line">			&lt;property name=&quot;ur1&quot; value=&quot;$&#123;url&#125;&quot;/&gt;</span><br><span class="line">			&lt;property name=&quot;username&quot; value=&quot;$&#123;username &#125;&quot;/&gt;</span><br><span class="line">			&lt;property name=&quot;password&quot; value=&quot;$&#123;password&#125;&quot;/&gt;</span><br><span class="line">		&lt;/dataSource&gt;</span><br><span class="line">	&lt;/environment&gt;</span><br><span class="line">&lt;/environments&gt;</span><br></pre></td></tr></table></figure></p>
 <p>我的项目用的是Spring + MyBatis,不需要配置事务管理器，因为Spring 模块会使用自带的管理器来覆盖前面的配置。</p>
-<p>多数据源配置如下：</p>
-<pre><code>&lt;bean id=&quot;dataSource1&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; init-method=&quot;init&quot;
-      destroy-method=&quot;close&quot;&gt;
-    &lt;!-- 基本属性 url、user、password --&gt;
-    &lt;property name=&quot;driverClassName&quot; value=&quot;${jdbc.db.driverClassName}&quot; /&gt;
-    &lt;property name=&quot;url&quot; value=&quot;${jdbc.db.url}&quot; /&gt;
-    &lt;property name=&quot;username&quot; value=&quot;${jdbc.db.username}&quot; /&gt;
-    &lt;property name=&quot;password&quot; value=&quot;${jdbc.db.password}&quot; /&gt;
-    &lt;!-- 配置初始化大小、最小、最大 --&gt;
-    &lt;property name=&quot;initialSize&quot; value=&quot;5&quot; /&gt;
-    &lt;property name=&quot;maxActive&quot; value=&quot;15&quot; /&gt;
-    &lt;!--连接泄漏监测 Druid提供了RemoveAbandanded相关配置，用来关闭长时间不使用的连接--&gt;
-    &lt;!-- 打开removeAbandoned功能 --&gt;
-    &lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; /&gt;
-    &lt;!-- 1800秒，也就是30分钟 --&gt;
-    &lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1800&quot; /&gt;
-    &lt;!-- 关闭abanded连接时输出错误日志 --&gt;
-    &lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; /&gt;
-    &lt;!-- 配置获取连接等待超时的时间 --&gt;
-    &lt;property name=&quot;maxWait&quot; value=&quot;3000&quot; /&gt;
-    &lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;
-    &lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; /&gt;
-    &lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;
-    &lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;300000&quot; /&gt;
-
-    &lt;property name=&quot;defaultTransactionlsoltionLevel&quot; value=&quot;300000&quot; /&gt;
-
-    &lt;property name=&quot;validationQuery&quot;&gt;
-        &lt;value&gt;SELECT 1&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property name=&quot;testOnBorrow&quot;&gt;
-        &lt;value&gt;true&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;!-- 配置监控统计拦截的filters --&gt;
-    &lt;!--Druid提供了WallFilter，它是基于SQL语义分析来实现防御SQL注入攻击的--&gt;
-    &lt;!-- &lt;property name=&quot;filters&quot; value=&quot;wall,stat&quot; /&gt; 这样，拦截检测的时间不在StatFilter统计的SQL执行时间内。--&gt;
-    &lt;!-- &lt;property name=&quot;filters&quot; value=&quot;stat,wall&quot; /&gt; 这样，拦截检测的时间也算在StatFilter统计的SQL执行时间内。--&gt;
-    &lt;!--mergeStat 为SQL合并配置  Stat则是不合并的 --&gt;
-    &lt;property name=&quot;filters&quot; value=&quot;mergeStat,wall&quot; /&gt;
-&lt;/bean&gt;
-
-&lt;bean id=&quot;dataSource2&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; init-method=&quot;init&quot;
-      destroy-method=&quot;close&quot;&gt;
-    &lt;!-- 基本属性 url、user、password --&gt;
-    &lt;property name=&quot;driverClassName&quot; value=&quot;${jdbc.db.driverClassName}&quot; /&gt;
-    &lt;property name=&quot;url&quot; value=&quot;${jdbc.db.url}&quot; /&gt;
-    &lt;property name=&quot;username&quot; value=&quot;${jdbc.db.username}&quot; /&gt;
-    &lt;property name=&quot;password&quot; value=&quot;${jdbc.db.password}&quot; /&gt;
-    &lt;!-- 配置初始化大小、最小、最大 --&gt;
-    &lt;property name=&quot;initialSize&quot; value=&quot;5&quot; /&gt;
-    &lt;property name=&quot;maxActive&quot; value=&quot;15&quot; /&gt;
-    &lt;!--连接泄漏监测 Druid提供了RemoveAbandanded相关配置，用来关闭长时间不使用的连接--&gt;
-    &lt;!-- 打开removeAbandoned功能 --&gt;
-    &lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; /&gt;
-    &lt;!-- 1800秒，也就是30分钟 --&gt;
-    &lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1800&quot; /&gt;
-    &lt;!-- 关闭abanded连接时输出错误日志 --&gt;
-    &lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; /&gt;
-    &lt;!-- 配置获取连接等待超时的时间 --&gt;
-    &lt;property name=&quot;maxWait&quot; value=&quot;3000&quot; /&gt;
-    &lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;
-    &lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; /&gt;
-    &lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;
-    &lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;300000&quot; /&gt;
-
-    &lt;property name=&quot;defaultTransactionlsoltionLevel&quot; value=&quot;300000&quot; /&gt;
-
-    &lt;property name=&quot;validationQuery&quot;&gt;
-        &lt;value&gt;SELECT 1&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property name=&quot;testOnBorrow&quot;&gt;
-        &lt;value&gt;true&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;!-- 配置监控统计拦截的filters --&gt;
-    &lt;!--Druid提供了WallFilter，它是基于SQL语义分析来实现防御SQL注入攻击的--&gt;
-    &lt;!-- &lt;property name=&quot;filters&quot; value=&quot;wall,stat&quot; /&gt; 这样，拦截检测的时间不在StatFilter统计的SQL执行时间内。--&gt;
-    &lt;!-- &lt;property name=&quot;filters&quot; value=&quot;stat,wall&quot; /&gt; 这样，拦截检测的时间也算在StatFilter统计的SQL执行时间内。--&gt;
-    &lt;!--mergeStat 为SQL合并配置  Stat则是不合并的 --&gt;
-    &lt;property name=&quot;filters&quot; value=&quot;mergeStat,wall&quot; /&gt;
-&lt;/bean&gt;
-
-
-&lt;bean id=&quot;sqlSessionFactory1&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
-    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource1&quot; /&gt;
-    &lt;property name=&quot;configLocation&quot; value=&quot;classpath:sqlmap-config.xml&quot; /&gt;
-
-&lt;/bean&gt;
-
-
-&lt;bean id=&quot;sqlSessionFactory2&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
-    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource1&quot; /&gt;
-    &lt;property name=&quot;configLocation&quot; value=&quot;classpath:sqlmap-config.xml&quot; /&gt;
-
-&lt;/bean&gt;
-
-
-&lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
-    &lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory1&quot;&gt;&lt;/property&gt;
-    &lt;property name=&quot;basePackage&quot; value=&quot;com.wyb.**.dao&quot; /&gt;
-
-&lt;/bean&gt;
-
-&lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
-    &lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory2&quot;&gt;&lt;/property&gt;
-    &lt;property name=&quot;basePackage&quot; value=&quot;com.wyb.**.dao&quot; /&gt;
-
-&lt;/bean&gt;
-</code></pre><p>这里记录几个常用的属性<br>parameterType。将会传入这条语句的参数类的完全限定名或别名。这个属性是可选的，因为MyBatis 可以通过TypeHandler 推断出具体传入语句的参数，默认值为unset。<br>resultType。从这条语句中返回的期望类型的类的完全限定名或别名。注意如果是集合情形，那应该是集合可以包含的类型,而不能是集合本身。返回时可以使用resultType或resultMap，但不能同时使用。<br>resultMap。外部resultMap 的命名引用。结果集的映射是MyBatis 最强大的特性，对其有一个很好的理解的话，许多复杂映射的情形都能迎刃而解。返回时可以使用resultMap 或resultType,但不能同时使用。</p>
+<p>多数据源配置如下：<br><figure class="highlight plain"><figcaption><span>XML</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;dataSource1&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; init-method=&quot;init&quot;</span><br><span class="line">	  destroy-method=&quot;close&quot;&gt;</span><br><span class="line">	&lt;!-- 基本属性 url、user、password --&gt;</span><br><span class="line">	&lt;property name=&quot;driverClassName&quot; value=&quot;$&#123;jdbc.db.driverClassName&#125;&quot; /&gt;</span><br><span class="line">	&lt;property name=&quot;url&quot; value=&quot;$&#123;jdbc.db.url&#125;&quot; /&gt;</span><br><span class="line">	&lt;property name=&quot;username&quot; value=&quot;$&#123;jdbc.db.username&#125;&quot; /&gt;</span><br><span class="line">	&lt;property name=&quot;password&quot; value=&quot;$&#123;jdbc.db.password&#125;&quot; /&gt;</span><br><span class="line">	&lt;!-- 配置初始化大小、最小、最大 --&gt;</span><br><span class="line">	&lt;property name=&quot;initialSize&quot; value=&quot;5&quot; /&gt;</span><br><span class="line">	&lt;property name=&quot;maxActive&quot; value=&quot;15&quot; /&gt;</span><br><span class="line">	&lt;!--连接泄漏监测 Druid提供了RemoveAbandanded相关配置，用来关闭长时间不使用的连接--&gt;</span><br><span class="line">	&lt;!-- 打开removeAbandoned功能 --&gt;</span><br><span class="line">	&lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; /&gt;</span><br><span class="line">	&lt;!-- 1800秒，也就是30分钟 --&gt;</span><br><span class="line">	&lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1800&quot; /&gt;</span><br><span class="line">	&lt;!-- 关闭abanded连接时输出错误日志 --&gt;</span><br><span class="line">	&lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; /&gt;</span><br><span class="line">	&lt;!-- 配置获取连接等待超时的时间 --&gt;</span><br><span class="line">	&lt;property name=&quot;maxWait&quot; value=&quot;3000&quot; /&gt;</span><br><span class="line">	&lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;</span><br><span class="line">	&lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; /&gt;</span><br><span class="line">	&lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;</span><br><span class="line">	&lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;300000&quot; /&gt;</span><br><span class="line"></span><br><span class="line">	&lt;property name=&quot;defaultTransactionlsoltionLevel&quot; value=&quot;300000&quot; /&gt;</span><br><span class="line"></span><br><span class="line">	&lt;property name=&quot;validationQuery&quot;&gt;</span><br><span class="line">		&lt;value&gt;SELECT 1&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;property name=&quot;testOnBorrow&quot;&gt;</span><br><span class="line">		&lt;value&gt;true&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;!-- 配置监控统计拦截的filters --&gt;</span><br><span class="line">	&lt;!--Druid提供了WallFilter，它是基于SQL语义分析来实现防御SQL注入攻击的--&gt;</span><br><span class="line">	&lt;!-- &lt;property name=&quot;filters&quot; value=&quot;wall,stat&quot; /&gt; 这样，拦截检测的时间不在StatFilter统计的SQL执行时间内。--&gt;</span><br><span class="line">	&lt;!-- &lt;property name=&quot;filters&quot; value=&quot;stat,wall&quot; /&gt; 这样，拦截检测的时间也算在StatFilter统计的SQL执行时间内。--&gt;</span><br><span class="line">	&lt;!--mergeStat 为SQL合并配置  Stat则是不合并的 --&gt;</span><br><span class="line">	&lt;property name=&quot;filters&quot; value=&quot;mergeStat,wall&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;dataSource2&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; init-method=&quot;init&quot;</span><br><span class="line">	  destroy-method=&quot;close&quot;&gt;</span><br><span class="line">	&lt;!-- 基本属性 url、user、password --&gt;</span><br><span class="line">	&lt;property name=&quot;driverClassName&quot; value=&quot;$&#123;jdbc.db.driverClassName&#125;&quot; /&gt;</span><br><span class="line">	&lt;property name=&quot;url&quot; value=&quot;$&#123;jdbc.db.url&#125;&quot; /&gt;</span><br><span class="line">	&lt;property name=&quot;username&quot; value=&quot;$&#123;jdbc.db.username&#125;&quot; /&gt;</span><br><span class="line">	&lt;property name=&quot;password&quot; value=&quot;$&#123;jdbc.db.password&#125;&quot; /&gt;</span><br><span class="line">	&lt;!-- 配置初始化大小、最小、最大 --&gt;</span><br><span class="line">	&lt;property name=&quot;initialSize&quot; value=&quot;5&quot; /&gt;</span><br><span class="line">	&lt;property name=&quot;maxActive&quot; value=&quot;15&quot; /&gt;</span><br><span class="line">	&lt;!--连接泄漏监测 Druid提供了RemoveAbandanded相关配置，用来关闭长时间不使用的连接--&gt;</span><br><span class="line">	&lt;!-- 打开removeAbandoned功能 --&gt;</span><br><span class="line">	&lt;property name=&quot;removeAbandoned&quot; value=&quot;true&quot; /&gt;</span><br><span class="line">	&lt;!-- 1800秒，也就是30分钟 --&gt;</span><br><span class="line">	&lt;property name=&quot;removeAbandonedTimeout&quot; value=&quot;1800&quot; /&gt;</span><br><span class="line">	&lt;!-- 关闭abanded连接时输出错误日志 --&gt;</span><br><span class="line">	&lt;property name=&quot;logAbandoned&quot; value=&quot;true&quot; /&gt;</span><br><span class="line">	&lt;!-- 配置获取连接等待超时的时间 --&gt;</span><br><span class="line">	&lt;property name=&quot;maxWait&quot; value=&quot;3000&quot; /&gt;</span><br><span class="line">	&lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;</span><br><span class="line">	&lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;60000&quot; /&gt;</span><br><span class="line">	&lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;</span><br><span class="line">	&lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;300000&quot; /&gt;</span><br><span class="line"></span><br><span class="line">	&lt;property name=&quot;defaultTransactionlsoltionLevel&quot; value=&quot;300000&quot; /&gt;</span><br><span class="line"></span><br><span class="line">	&lt;property name=&quot;validationQuery&quot;&gt;</span><br><span class="line">		&lt;value&gt;SELECT 1&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;property name=&quot;testOnBorrow&quot;&gt;</span><br><span class="line">		&lt;value&gt;true&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;!-- 配置监控统计拦截的filters --&gt;</span><br><span class="line">	&lt;!--Druid提供了WallFilter，它是基于SQL语义分析来实现防御SQL注入攻击的--&gt;</span><br><span class="line">	&lt;!-- &lt;property name=&quot;filters&quot; value=&quot;wall,stat&quot; /&gt; 这样，拦截检测的时间不在StatFilter统计的SQL执行时间内。--&gt;</span><br><span class="line">	&lt;!-- &lt;property name=&quot;filters&quot; value=&quot;stat,wall&quot; /&gt; 这样，拦截检测的时间也算在StatFilter统计的SQL执行时间内。--&gt;</span><br><span class="line">	&lt;!--mergeStat 为SQL合并配置  Stat则是不合并的 --&gt;</span><br><span class="line">	&lt;property name=&quot;filters&quot; value=&quot;mergeStat,wall&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;sqlSessionFactory1&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource1&quot; /&gt;</span><br><span class="line">	&lt;property name=&quot;configLocation&quot; value=&quot;classpath:sqlmap-config.xml&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;sqlSessionFactory2&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource1&quot; /&gt;</span><br><span class="line">	&lt;property name=&quot;configLocation&quot; value=&quot;classpath:sqlmap-config.xml&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory1&quot;&gt;&lt;/property&gt;</span><br><span class="line">	&lt;property name=&quot;basePackage&quot; value=&quot;com.wyb.**.dao&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory2&quot;&gt;&lt;/property&gt;</span><br><span class="line">	&lt;property name=&quot;basePackage&quot; value=&quot;com.wyb.**.dao&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这里记录几个常用的属性<br>parameterType。将会传入这条语句的参数类的完全限定名或别名。这个属性是可选的，因为MyBatis 可以通过TypeHandler 推断出具体传入语句的参数，默认值为unset。<br>resultType。从这条语句中返回的期望类型的类的完全限定名或别名。注意如果是集合情形，那应该是集合可以包含的类型,而不能是集合本身。返回时可以使用resultType或resultMap，但不能同时使用。<br>resultMap。外部resultMap 的命名引用。结果集的映射是MyBatis 最强大的特性，对其有一个很好的理解的话，许多复杂映射的情形都能迎刃而解。返回时可以使用resultMap 或resultType,但不能同时使用。</p>
 <p>更多MyBatis的介绍（特点、SqlSessionFactory、SqlSession、配置文件详解等）请参见<a href="http://www.mybatis.cn/page/3/" target="_blank" rel="noopener">MyBatis中国分站</a></p>
 
       
@@ -727,7 +619,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.3k</span>
+    <span title="Site words total count">5.5k</span>
   
 </div>
 
