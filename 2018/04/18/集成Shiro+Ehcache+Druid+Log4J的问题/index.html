@@ -86,17 +86,17 @@
 
 
 
-<meta name="description" content="使用Redis过程中的问题收集">
+<meta name="description" content="集成Shiro+Ehcache+Druid+Log4J等遇到的问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis">
-<meta property="og:url" content="https://759716722.github.io/blog/2018/04/10/安装、使用Redis/index.html">
+<meta property="og:title" content="集成Shiro+Ehcache+Druid+Log4J的问题">
+<meta property="og:url" content="https://759716722.github.io/blog/2018/04/18/集成Shiro+Ehcache+Druid+Log4J的问题/index.html">
 <meta property="og:site_name" content="魏有标的博客">
-<meta property="og:description" content="使用Redis过程中的问题收集">
+<meta property="og:description" content="集成Shiro+Ehcache+Druid+Log4J等遇到的问题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-12T13:07:32.596Z">
+<meta property="og:updated_time" content="2018-04-17T09:25:21.526Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis">
-<meta name="twitter:description" content="使用Redis过程中的问题收集">
+<meta name="twitter:title" content="集成Shiro+Ehcache+Druid+Log4J的问题">
+<meta name="twitter:description" content="集成Shiro+Ehcache+Druid+Log4J等遇到的问题">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://759716722.github.io/blog/2018/04/10/安装、使用Redis/"/>
+  <link rel="canonical" href="https://759716722.github.io/blog/2018/04/18/集成Shiro+Ehcache+Druid+Log4J的问题/"/>
 
 
 
 
 
-  <title>Redis | 魏有标的博客</title>
+  <title>集成Shiro+Ehcache+Druid+Log4J的问题 | 魏有标的博客</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/04/10/安装、使用Redis/">
+    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/04/18/集成Shiro+Ehcache+Druid+Log4J的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyb">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Redis</h1>
+          <h1 class="post-title" itemprop="name headline">集成Shiro+Ehcache+Druid+Log4J的问题</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T11:04:06+08:00">
-                2018-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T00:00:00+08:00">
+                2018-04-18
               </time>
             
 
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-12T21:07:32+08:00">
-                2018-04-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-17T17:25:21+08:00">
+                2018-04-17
               </time>
             
           </span>
@@ -343,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
+                  <a href="/blog/categories/搭框架问题记录/" itemprop="url" rel="index">
+                    <span itemprop="name">搭框架问题记录</span>
                   </a>
                 </span>
 
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  30
+                  1,590
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  7
                 </span>
               
             </div>
@@ -411,9 +411,124 @@
       
 
       
-        <h2 id="使用Redis过程中的问题收集"><a href="#使用Redis过程中的问题收集" class="headerlink" title="使用Redis过程中的问题收集"></a>使用Redis过程中的问题收集</h2><a id="more"></a>
-<p><a href="http://download.redis.io/releases/" target="_blank" rel="noopener">各版本下载地址</a><br><a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="noopener">windows版本下载</a></p>
-<p>内容待整理更新</p>
+        <h2 id="集成Shiro-Ehcache-Druid-Log4J等遇到的问题"><a href="#集成Shiro-Ehcache-Druid-Log4J等遇到的问题" class="headerlink" title="集成Shiro+Ehcache+Druid+Log4J等遇到的问题"></a>集成Shiro+Ehcache+Druid+Log4J等遇到的问题</h2><a id="more"></a>
+<ol>
+<li><p>Shiro验证URL的规则</p>
+<pre><code>Shiro验证URL时,URL匹配成功便不再继续匹配查找(所以要注意配置文件中的URL顺序,尤其在使用通配符时)
+</code></pre><p> /** = authc 类似这种 所以这个一定要放在最后，如果放在最前面、则后面所有的都会失效<br> 动态加载权限过滤的时候 踩过坑</p>
+</li>
+</ol>
+<p>默认过滤器(10个)<br>anon – org.apache.shiro.web.filter.authc.AnonymousFilter<br>authc – org.apache.shiro.web.filter.authc.FormAuthenticationFilter<br>authcBasic – org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter<br>perms – org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter<br>port – org.apache.shiro.web.filter.authz.PortFilter<br>rest – org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter<br>roles – org.apache.shiro.web.filter.authz.RolesAuthorizationFilter<br>ssl – org.apache.shiro.web.filter.authz.SslFilter<br>user – org.apache.shiro.web.filter.authc.UserFilter<br>logout – org.apache.shiro.web.filter.authc.LogoutFilter  </p>
+<p>anon:例子/admins/<strong>=anon 没有参数，表示可以匿名使用。<br>authc:例如/admins/user/</strong>=authc表示需要认证(登录)才能使用，没有参数<br>roles：例子/admins/user/<strong>=roles[admin],参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割，当有多个参数时，例如admins/user/</strong>=roles[“admin,guest”],每个参数通过才算通过，相当于hasAllRoles()方法。<br>perms：例子/admins/user/<strong>=perms[user:add:*],参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割，例如/admins/user/</strong>=perms[“user:add:<em>,user:modify:</em>“]，当有多个参数时必须每个参数都通过才通过，想当于isPermitedAll()方法。<br>rest：例子/admins/user/<strong>=rest[user],根据请求的方法，相当于/admins/user/</strong>=perms[user:method] ,其中method为post，get，delete等。<br>port：例子/admins/user/<strong>=port[8081],当请求的url的端口不是8081是跳转到schemal://serverName:8081?queryString,其中schmal是协议http或https等，serverName是你访问的host,8081是url配置里port的端口，queryString是你访问的url里的？后面的参数。<br>authcBasic：例如/admins/user/</strong>=authcBasic没有参数表示httpBasic认证<br>ssl:例子/admins/user/<strong>=ssl没有参数，表示安全的url请求，协议为https<br>user:例如/admins/user/</strong>=user没有参数表示必须存在用户，当登入操作时不做检查</p>
+<ol start="2">
+<li><p>获取 shiroFilter的实例</p>
+<pre><code>当需要得到名为”shiroFilter“的bean时，调用其getObject()来获取实例
+ShiroFilterFactoryBean源码及拦截原理深入分析 可参见：http://blog.csdn.net/u012345283/article/details/44199791
+</code></pre></li>
+</ol>
+<ol start="3">
+<li><p>无法访问 filter</p>
+<pre><code> 这里被搞死了，一直用的jetty容器，一直编译不通过，报错是 无法访问 filter,一直找不到原因
+终于在用tomcat容器的时候才完整的看到提示信息：
+</code></pre><p> Error:(39, 110) java: 无法访问javax.servlet.Filter找不到javax.servlet.Filter的类文件<br> 擦，原来是没有这jar包,引入 servlet-api jar包 通过。<br> 由于缺少这个jar包导致无法访问到 shiroFilter.getFilterChainResolver();<br> 这个jar 里有访问 filter 的接口类 javax.servlet.Filter</p>
+ <!--被这个包搞死了-->
+<p> <dependency><br>   <groupid>javax.servlet</groupid><br>   <artifactid>servlet-api</artifactid><br>   <version>2.5</version></dependency></p>
+   <!--<scope>provided</scope>-->
+<p> </p>
+ <!--如果不同版本的包之间也会造成冲突问题，解决这个问题的方法就是对于servlet-ap.jar
+ 使用 <scope>标签，编译的时候用到servlet-api和jsp-api，但在打包的时候不用这两个依赖
+
+   <dependency>中<scope>，它主要管理依赖的部署。目前<scope>可以使用5个值：
+ * compile，缺省值，适用于所有阶段，会随着项目一起发布。
+ * provided，类似compile，期望JDK、容器或使用者会提供这个依赖。如servlet.jar。
+ * runtime，只在运行时使用，如JDBC驱动，适用运行和测试阶段。
+ * test，只在测试时使用，用于编译和运行测试代码。不会随项目发布。
+ * system，类似provided，需要显式提供包含依赖的jar，Maven不会在Repository中查找它。
+ -->
+</li>
+</ol>
+<ol start="4">
+<li><p>使用Shiro注解方式验证(我的项目并未用这种方式，这里记录下)</p>
+<pre><code>说明：
+ 使用shiro注解 以下配置必须放在 spring-mvc的配置文件里，因为shiro的注解授权是利用Spring的AOP实现的。
+ 在程序启动时会自动扫描作了注解的Class，当发现注解时，就自动注入授权代码实现。
+ 也就是说，要注入授权控制代码，第一处必须要让框架要可以扫描找被注解的Class 。
+ 而我们的Srping项目在applicationContext.xml中一般是不扫描Controller的，所以也就无法让写在Controller中的注解授权生效了。
+ 因此正确的作法是将这配置放到spring-mvc的配置文件中.这样Controller就可以通过注解授权了。
+ 同样的道理，如果service层也需要注解授权，那就需要在spring的applicationContext.xml配置文件中再配置一遍。
+
+&lt;!-- 保证实现了Shiro内部lifecycle函数的bean执行 Shiro注解依赖该Bean,必须在该bean之后运行--&gt;
+</code></pre> <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"><br> <!-- AOP式方法级权限检查  --><br> <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"><br>     <property name="proxyTargetClass" value="true"><br> </property></bean><br> <!-- 启用shrio 控制器授权注解拦截方式 --><br> <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"><br>     <property name="securityManager" ref="securityManager"><br> </property></bean>
+
+ <!--说明：
+         使用shiro注解授权后，上面配置的没有权限跳转的URL就失效了
+ -->
+ <!--解决方法：在 spring-mvc中加入如下配置：-->
+ <!-- shiro为集成springMvc 拦截异常-->
+ <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"><br>     <property name="exceptionMappings"><br>         <props><br>             <!-- 这里你可以根据需要定义N多个错误异常转发 --><br>             <prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/unauth.html</prop><br>             <prop key="org.apache.shiro.authz.UnauthenticatedException">redirect:/unauth.html</prop><br>             <prop key="java.lang.IllegalArgumentException">/error.jsp</prop>  <!-- 参数错误(bizError.jsp) --><br>             <prop key="java.lang.Exception">/error.jsp</prop>  <!-- 其他错误为'未定义错误'(unknowError.jsp) --><br>         </props><br>     </property><br> </bean>
+
+
+
+
+</bean></li>
+</ol>
+<ol start="5">
+<li><p>slf4j日志无法写入 </p>
+<pre><code>开始是因为只配置了log4j.properties这个配置文件，未引入jar包，引入 slf4j-api jar 包后 log.info()还是不能输出
+原因：slf4j只是一个日志标准，并不是日志系统的具体实现。slf4j-simple、logback都是slf4j的具体实现，log4j并不直接实现slf4j，但是有专门的一层桥接slf4j-log4j12来实现slf4j
+
+&lt;!--slf4j 日志包--&gt;
+</code></pre> <!--使用适配器类举例 SLF4J+SLF4J-Log4J+Log4J 方案-->
+ <dependency><br>   <groupid>org.slf4j</groupid><br>   <artifactid>slf4j-api</artifactid><br>   <version>1.7.25</version><br> </dependency><br> <dependency><br>   <groupid>org.slf4j</groupid><br>   <artifactid>slf4j-log4j12</artifactid><br>   <version>1.7.12</version><br> </dependency><br> <dependency><br>   <groupid>log4j</groupid><br>   <artifactid>log4j</artifactid><br>   <version>1.2.17</version><br> </dependency>
+
+<p> 详情参见：<br> <a href="http://www.cnblogs.com/xrq730/p/8619156.html" target="_blank" rel="noopener">Java日志框架：slf4j作用及其实现原理</a><br> <a href="http://blog.csdn.net/dslztx/article/details/47185027" target="_blank" rel="noopener">Java日志框架—SLF4J</a></p>
+</li>
+<li><p>Ehcache 问题</p>
+<p>  Spring中配置 ehcache 首先要定义 ehcache 缓存配置 引入 配置文件<br>  然后 spring 和 shiro 分别封装ehcache缓存管理器,此时要引入相关jar包<br>  shiroCacheManager 这个 bean 在 shiro 配置文件中 注入给相关需要缓存的bean eg：securityManager、sessionDAO</p>
+<pre><code> &lt;!--ehcache 缓存配置--&gt;
+&lt;bean id=&quot;ehCacheManager&quot; class=&quot;org.springframework.cache.ehcache.EhCacheManagerFactoryBean&quot;&gt;
+    &lt;property name=&quot;configLocation&quot; value=&quot;classpath:ehcache.xml&quot;/&gt;
+    &lt;property name=&quot;shared&quot; value=&quot;true&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;!-- spring 封装ehcache缓存管理器  --&gt;
+&lt;bean id=&quot;springCacheManager&quot; class=&quot;org.springframework.cache.ehcache.EhCacheCacheManager&quot;&gt;
+    &lt;property name=&quot;cacheManager&quot; ref=&quot;ehCacheManager&quot;/&gt;
+&lt;/bean&gt;
+
+&lt;!-- shiro封装cacheManager --&gt;
+&lt;bean id=&quot;shiroCacheManager&quot; class=&quot;org.apache.shiro.cache.ehcache.EhCacheManager&quot;&gt;
+    &lt;property name=&quot;cacheManager&quot; ref=&quot;ehCacheManager&quot; /&gt;
+&lt;/bean&gt;
+</code></pre></li>
+</ol>
+<pre><code>   &lt;!-- ehcache缓存框架 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;net.sf.ehcache&lt;/groupId&gt;
+  &lt;artifactId&gt;ehcache-core&lt;/artifactId&gt;
+  &lt;version&gt;2.4.8&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!--shiro ehcache--&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;
+  &lt;artifactId&gt;shiro-ehcache&lt;/artifactId&gt;
+  &lt;version&gt;${shiro.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- Spring 整合 ehcache 包 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;
+  &lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><ol start="7">
+<li><p>数据库连接用druid遇到的问题</p>
+<pre><code>数据库为 sqlserver2008 驱动为 sqljdbc3.0 开始用的dbcp 后来想用 druid 因为他有各种监控，首先导入jar包
+&lt;dependency&gt;
+</code></pre><p>   <groupid>com.alibaba</groupid><br>   <artifactid>druid</artifactid><br>   <version>1.1.6</version><br> <br> 用的是最新版本，然后开始启动项目，他奶奶的一直启动不了，<br> tomcat8 跑 错误是 ClassNotFound,很是奇怪，<br> jetty 8 跑，一直卡在 (DruidDataSource.java:785) {dataSource-1} inited 不动，<br> 各种百度找了很久，找不到原因,很苦恼明明导入了jar包，<br> 而且点击&lt;bean id=”dataSource” class=”com.alibaba.druid.pool.DruidDataSource” init-method=”init”destroy-method=”close”&gt;<br> 也能到 DruidDataSource 这个类里去，就是不知道原因在哪，后来想是不是版本太新了，然后到maven仓库里看了下有好几个版本 然后就改用了 1.0.28版<br> 还是不行，跟上面一样的结果，又是一顿百度啊，还是解决不了，后来改成 1.0.18的时候 用jetty 8 跑竟然可以了，但是tomcat 8 依然是ClassNotFound<br> 一直不知道什么原因</p>
+</li>
+</ol>
 
       
     </div>
@@ -438,8 +553,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/04/10/安装虚拟机，使用Linux系统/" rel="next" title="Windows安装虚拟机使用Linux系统">
-                <i class="fa fa-chevron-left"></i> Windows安装虚拟机使用Linux系统
+              <a href="/blog/2018/04/17/使用spring注解遇到的问题/" rel="next" title="使用Spring注解遇到的问题">
+                <i class="fa fa-chevron-left"></i> 使用Spring注解遇到的问题
               </a>
             
           </div>
@@ -447,10 +562,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/04/12/文章收集/" rel="prev" title="文章收集">
-                文章收集 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -577,7 +688,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Redis过程中的问题收集"><span class="nav-number">1.</span> <span class="nav-text">使用Redis过程中的问题收集</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集成Shiro-Ehcache-Druid-Log4J等遇到的问题"><span class="nav-number">1.</span> <span class="nav-text">集成Shiro+Ehcache+Druid+Log4J等遇到的问题</span></a></li></ol></div>
             
 
           </div>
