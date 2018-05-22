@@ -86,17 +86,17 @@
 
 
 
-<meta name="description" content="Redis学习—文章收集">
+<meta name="description" content="Spring注解默认命名规则采坑记录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入学习Redis">
-<meta property="og:url" content="https://759716722.github.io/blog/2018/04/10/深入学习Redis/index.html">
+<meta property="og:title" content="Spring注解默认命名规则采坑记录">
+<meta property="og:url" content="https://759716722.github.io/blog/2018/05/22/Spring注解命名规则采坑记录/index.html">
 <meta property="og:site_name" content="魏有标的博客">
-<meta property="og:description" content="Redis学习—文章收集">
+<meta property="og:description" content="Spring注解默认命名规则采坑记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T01:03:47.233Z">
+<meta property="og:updated_time" content="2018-05-22T09:13:07.831Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入学习Redis">
-<meta name="twitter:description" content="Redis学习—文章收集">
+<meta name="twitter:title" content="Spring注解默认命名规则采坑记录">
+<meta name="twitter:description" content="Spring注解默认命名规则采坑记录">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://759716722.github.io/blog/2018/04/10/深入学习Redis/"/>
+  <link rel="canonical" href="https://759716722.github.io/blog/2018/05/22/Spring注解命名规则采坑记录/"/>
 
 
 
 
 
-  <title>深入学习Redis | 魏有标的博客</title>
+  <title>Spring注解默认命名规则采坑记录 | 魏有标的博客</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/04/10/深入学习Redis/">
+    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/05/22/Spring注解命名规则采坑记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyb">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深入学习Redis</h1>
+          <h1 class="post-title" itemprop="name headline">Spring注解默认命名规则采坑记录</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T08:57:07+08:00">
-                2018-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T17:11:24+08:00">
+                2018-05-22
               </time>
             
 
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-10T09:03:47+08:00">
-                2018-04-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-22T17:13:07+08:00">
+                2018-05-22
               </time>
             
           </span>
@@ -343,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
+                  <a href="/blog/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
                   </a>
                 </span>
 
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  22
+                  803
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -411,9 +411,50 @@
       
 
       
-        <h2 id="Redis学习—文章收集"><a href="#Redis学习—文章收集" class="headerlink" title="Redis学习—文章收集"></a>Redis学习—文章收集</h2><a id="more"></a>
-<p>文章列表</p>
-<p><a href="http://www.cnblogs.com/kismetv/p/8654978.html" target="_blank" rel="noopener">深入学习Redis（1）：Redis内存模型</a></p>
+        <h2 id="Spring注解默认命名规则采坑记录"><a href="#Spring注解默认命名规则采坑记录" class="headerlink" title="Spring注解默认命名规则采坑记录"></a>Spring注解默认命名规则采坑记录</h2><a id="more"></a>
+<p>####由来<br>之前在维科做APS（计划排产系统）的时候把原来框架xml配置式的改成Spring注解式的了，当时考虑后面有可能会搬到别的系统上去（即两个系统融合），为了防止类名冲突，就在写的时候把类名都加了APS做标识所以只要是APS的类都是APSXXXXX，这就为今天的事情埋下了坑。刚来新公司一个星期，突然维科的同事打电话说遇到些问题，让帮忙看下。初步沟通是在配置Struts文件的时候出了问题，然后电话排除了几个点，结果还是找不到这个类。尴尬了，远程吧。看了下该有的注解、配置都有，没问题啊什么鬼。后来就给这个控制类加了个命名@Controller(“XXXX”),这次可以了。（当时都是采用的默认生成bean名称的方式）这次就把问题定位在了Spring扫描时，默认生成bean名称的规则上。</p>
+<p>####原理如下：<br>spring开发手册 自动检测组件的命名  当一个组件在某个扫描过程中被自动检测到时，会根据那个扫描器的BeanNameGenerator 策略生成它的bean名称BeanNameGenerator。</p>
+<p>1.BeanNameGenerator接口位于 org.springframework.beans.factory.support 包下面，只声明了一个方法 <code>generateBeanName(BeanDefinition var1, BeanDefinitionRegistry var2)</code>，接受两个参数：var1 被生成名字的BeanDefinition实例；var2 生成名字后注册进的BeanDefinitionRegistry。</p>
+<p>2.BeanNameGenerator有两个实现版本，DefaultBeanNameGenerator和AnnotationBeanNameGenerator。其中DefaultBeanNameGenerator是给资源文件加载bean时使用（BeanDefinitionReader中使用）；AnnotationBeanNameGenerator是为了处理注解生成bean name的情况。</p>
+<p>3.AnnotationBeanNameGenerator是spring注解的默认生成策略，我们看一眼源码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">generateBeanName</span><span class="params">(BeanDefinition definition, BeanDefinitionRegistry registry)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(definition <span class="keyword">instanceof</span> AnnotatedBeanDefinition) &#123;</span><br><span class="line">          String beanName = <span class="keyword">this</span>.determineBeanNameFromAnnotation((AnnotatedBeanDefinition)definition);</span><br><span class="line">          <span class="keyword">if</span>(StringUtils.hasText(beanName)) &#123;</span><br><span class="line">              <span class="keyword">return</span> beanName;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.buildDefaultBeanName(definition, registry);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>if(definition instanceof AnnotatedBeanDefinition)  是否是BeanDefinition的子类AnnotatedBeanDefinition类型，是按照注解生成模式生成信息，否则生成默认的bean name 由 buildDefaultBeanName方法负责生成名称的实现。这里我们只看 buildDefaultBeanName 这个方法。</p>
+<pre><code class="java">    <span class="function"><span class="keyword">protected</span> String <span class="title">buildDefaultBeanName</span><span class="params">(BeanDefinition definition)</span> </span>{
+    String shortClassName = ClassUtils.getShortName(definition.getBeanClassName());
+    <span class="keyword">return</span> Introspector.decapitalize(shortClassName);
+}
+definition.getBeanClassName()是获取全限定名称的
+ClassUtils.getShortName()源码
+<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getShortName</span><span class="params">(String className)</span> </span>{
+    Assert.hasLength(className, <span class="string">"Class name must not be empty"</span>);
+    <span class="keyword">int</span> lastDotIndex = className.lastIndexOf(<span class="number">46</span>);
+    <span class="keyword">int</span> nameEndIndex = className.indexOf(<span class="string">"$$"</span>);
+    <span class="keyword">if</span>(nameEndIndex == -<span class="number">1</span>) {
+        nameEndIndex = className.length();
+    }
+
+    String shortName = className.substring(lastDotIndex + <span class="number">1</span>, nameEndIndex);
+    shortName = shortName.replace(<span class="string">'$'</span>, <span class="string">'.'</span>);
+    <span class="keyword">return</span> shortName;
+}
+
+Introspector.decapitalize()源码
+<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decapitalize</span><span class="params">(String name)</span> </span>{
+    <span class="keyword">if</span> (name == <span class="keyword">null</span> || name.length() == <span class="number">0</span>) {
+        <span class="keyword">return</span> name;
+    }
+    <span class="keyword">if</span> (name.length() &gt; <span class="number">1</span> &amp;&amp; Character.isUpperCase(name.charAt(<span class="number">1</span>)) &amp;&amp;
+                    Character.isUpperCase(name.charAt(<span class="number">0</span>))){
+        <span class="keyword">return</span> name;
+    }
+    <span class="keyword">char</span> chars[] = name.toCharArray();
+    chars[<span class="number">0</span>] = Character.toLowerCase(chars[<span class="number">0</span>]);
+    <span class="keyword">return</span> <span class="keyword">new</span> String(chars);
+}
+
+</code></pre>
+<p>####这下终于明白了吧，如果第一个和第二个字符都是大写的字母开头则返回，扫描进来的bean就是大写开头的，其他的则是把第一个字符小写返回，扫描进来的是小写开头。</p>
+<p>至此已经解释了我们今天遇到的问题，其他分支想了解的时候可自行百度。另外如果想自定义注解命名规则可使用name-generator属性。</p>
+<p><a href="context:component-scan" target="_blank" rel="noopener">context:component-scan</a>的name-generator属性 自定义Spring Bean注解命名规则</p>
 
       
     </div>
@@ -438,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/04/04/Markdown语法/" rel="next" title="Markdown语法">
-                <i class="fa fa-chevron-left"></i> Markdown语法
+              <a href="/blog/2018/05/08/Navicat连接Orcale问题/" rel="next" title="Navicat连接Orcale问题">
+                <i class="fa fa-chevron-left"></i> Navicat连接Orcale问题
               </a>
             
           </div>
@@ -447,10 +488,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/04/10/安装虚拟机，使用Linux系统/" rel="prev" title="Windows安装虚拟机使用Linux系统">
-                Windows安装虚拟机使用Linux系统 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -577,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis学习—文章收集"><span class="nav-number">1.</span> <span class="nav-text">Redis学习—文章收集</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring注解默认命名规则采坑记录"><span class="nav-number">1.</span> <span class="nav-text">Spring注解默认命名规则采坑记录</span></a></li></ol></div>
             
 
           </div>
