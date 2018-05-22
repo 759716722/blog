@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="Spring注解默认命名规则采坑记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T09:13:07.831Z">
+<meta property="og:updated_time" content="2018-05-22T09:19:05.196Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring注解默认命名规则采坑记录">
 <meta name="twitter:description" content="Spring注解默认命名规则采坑记录">
@@ -324,7 +324,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-22T17:13:07+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-22T17:19:05+08:00">
                 2018-05-22
               </time>
             
@@ -412,8 +412,8 @@
 
       
         <h2 id="Spring注解默认命名规则采坑记录"><a href="#Spring注解默认命名规则采坑记录" class="headerlink" title="Spring注解默认命名规则采坑记录"></a>Spring注解默认命名规则采坑记录</h2><a id="more"></a>
-<p>####由来<br>之前在维科做APS（计划排产系统）的时候把原来框架xml配置式的改成Spring注解式的了，当时考虑后面有可能会搬到别的系统上去（即两个系统融合），为了防止类名冲突，就在写的时候把类名都加了APS做标识所以只要是APS的类都是APSXXXXX，这就为今天的事情埋下了坑。刚来新公司一个星期，突然维科的同事打电话说遇到些问题，让帮忙看下。初步沟通是在配置Struts文件的时候出了问题，然后电话排除了几个点，结果还是找不到这个类。尴尬了，远程吧。看了下该有的注解、配置都有，没问题啊什么鬼。后来就给这个控制类加了个命名@Controller(“XXXX”),这次可以了。（当时都是采用的默认生成bean名称的方式）这次就把问题定位在了Spring扫描时，默认生成bean名称的规则上。</p>
-<p>####原理如下：<br>spring开发手册 自动检测组件的命名  当一个组件在某个扫描过程中被自动检测到时，会根据那个扫描器的BeanNameGenerator 策略生成它的bean名称BeanNameGenerator。</p>
+<h4 id="由来"><a href="#由来" class="headerlink" title="由来"></a>由来</h4><p>之前在维科做APS（计划排产系统）的时候把原来框架xml配置式的改成Spring注解式的了，当时考虑后面有可能会搬到别的系统上去（即两个系统融合），为了防止类名冲突，就在写的时候把类名都加了APS做标识所以只要是APS的类都是APSXXXXX，这就为今天的事情埋下了坑。刚来新公司一个星期，突然维科的同事打电话说遇到些问题，让帮忙看下。初步沟通是在配置Struts文件的时候出了问题，然后电话排除了几个点，结果还是找不到这个类。尴尬了，远程吧。看了下该有的注解、配置都有，没问题啊什么鬼。后来就给这个控制类加了个命名@Controller(“XXXX”),这次可以了。（当时都是采用的默认生成bean名称的方式）这次就把问题定位在了Spring扫描时，默认生成bean名称的规则上。</p>
+<h4 id="原理如下："><a href="#原理如下：" class="headerlink" title="原理如下："></a>原理如下：</h4><p>spring开发手册 自动检测组件的命名  当一个组件在某个扫描过程中被自动检测到时，会根据那个扫描器的BeanNameGenerator 策略生成它的bean名称BeanNameGenerator。</p>
 <p>1.BeanNameGenerator接口位于 org.springframework.beans.factory.support 包下面，只声明了一个方法 <code>generateBeanName(BeanDefinition var1, BeanDefinitionRegistry var2)</code>，接受两个参数：var1 被生成名字的BeanDefinition实例；var2 生成名字后注册进的BeanDefinitionRegistry。</p>
 <p>2.BeanNameGenerator有两个实现版本，DefaultBeanNameGenerator和AnnotationBeanNameGenerator。其中DefaultBeanNameGenerator是给资源文件加载bean时使用（BeanDefinitionReader中使用）；AnnotationBeanNameGenerator是为了处理注解生成bean name的情况。</p>
 <p>3.AnnotationBeanNameGenerator是spring注解的默认生成策略，我们看一眼源码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">generateBeanName</span><span class="params">(BeanDefinition definition, BeanDefinitionRegistry registry)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(definition <span class="keyword">instanceof</span> AnnotatedBeanDefinition) &#123;</span><br><span class="line">          String beanName = <span class="keyword">this</span>.determineBeanNameFromAnnotation((AnnotatedBeanDefinition)definition);</span><br><span class="line">          <span class="keyword">if</span>(StringUtils.hasText(beanName)) &#123;</span><br><span class="line">              <span class="keyword">return</span> beanName;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.buildDefaultBeanName(definition, registry);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
@@ -452,8 +452,7 @@ Introspector.decapitalize()源码
 }
 
 </code></pre>
-<p>####这下终于明白了吧，如果第一个和第二个字符都是大写的字母开头则返回，扫描进来的bean就是大写开头的，其他的则是把第一个字符小写返回，扫描进来的是小写开头。</p>
-<p>至此已经解释了我们今天遇到的问题，其他分支想了解的时候可自行百度。另外如果想自定义注解命名规则可使用name-generator属性。</p>
+<h4 id="这下终于明白了吧，如果第一个和第二个字符都是大写的字母开头则返回，扫描进来的bean就是大写开头的，其他的则是把第一个字符小写返回，扫描进来的是小写开头。"><a href="#这下终于明白了吧，如果第一个和第二个字符都是大写的字母开头则返回，扫描进来的bean就是大写开头的，其他的则是把第一个字符小写返回，扫描进来的是小写开头。" class="headerlink" title="这下终于明白了吧，如果第一个和第二个字符都是大写的字母开头则返回，扫描进来的bean就是大写开头的，其他的则是把第一个字符小写返回，扫描进来的是小写开头。"></a>这下终于明白了吧，如果第一个和第二个字符都是大写的字母开头则返回，扫描进来的bean就是大写开头的，其他的则是把第一个字符小写返回，扫描进来的是小写开头。</h4><p>至此已经解释了我们今天遇到的问题，其他分支想了解的时候可自行百度。另外如果想自定义注解命名规则可使用name-generator属性。</p>
 <p><a href="context:component-scan" target="_blank" rel="noopener">context:component-scan</a>的name-generator属性 自定义Spring Bean注解命名规则</p>
 
       
@@ -488,6 +487,10 @@ Introspector.decapitalize()源码
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/05/22/添加链接服务器实现跨库访问/" rel="prev" title="添加链接服务器实现跨库访问">
+                添加链接服务器实现跨库访问 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -568,7 +571,7 @@ Introspector.decapitalize()源码
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -614,7 +617,7 @@ Introspector.decapitalize()源码
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring注解默认命名规则采坑记录"><span class="nav-number">1.</span> <span class="nav-text">Spring注解默认命名规则采坑记录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring注解默认命名规则采坑记录"><span class="nav-number">1.</span> <span class="nav-text">Spring注解默认命名规则采坑记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#由来"><span class="nav-number">1.0.1.</span> <span class="nav-text">由来</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理如下："><span class="nav-number">1.0.2.</span> <span class="nav-text">原理如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这下终于明白了吧，如果第一个和第二个字符都是大写的字母开头则返回，扫描进来的bean就是大写开头的，其他的则是把第一个字符小写返回，扫描进来的是小写开头。"><span class="nav-number">1.0.3.</span> <span class="nav-text">这下终于明白了吧，如果第一个和第二个字符都是大写的字母开头则返回，扫描进来的bean就是大写开头的，其他的则是把第一个字符小写返回，扫描进来的是小写开头。</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -648,7 +651,7 @@ Introspector.decapitalize()源码
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">10.1k</span>
+    <span title="Site words total count">10.8k</span>
   
 </div>
 
