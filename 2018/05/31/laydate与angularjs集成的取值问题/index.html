@@ -86,17 +86,17 @@
 
 
 
-<meta name="description" content="集成layer和laydate的问题">
+<meta name="description" content="laydate与angularjs集成 ng-model的取值问题 laydate-v5.0.9">
 <meta property="og:type" content="article">
-<meta property="og:title" content="集成layer和laydate的问题">
-<meta property="og:url" content="https://759716722.github.io/blog/2018/04/27/集成Layer和Laydate问题/index.html">
+<meta property="og:title" content="laydate与angularjs集成的取值问题">
+<meta property="og:url" content="https://759716722.github.io/blog/2018/05/31/laydate与angularjs集成的取值问题/index.html">
 <meta property="og:site_name" content="魏有标的博客">
-<meta property="og:description" content="集成layer和laydate的问题">
+<meta property="og:description" content="laydate与angularjs集成 ng-model的取值问题 laydate-v5.0.9">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-31T09:18:17.652Z">
+<meta property="og:updated_time" content="2018-05-31T09:38:28.779Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="集成layer和laydate的问题">
-<meta name="twitter:description" content="集成layer和laydate的问题">
+<meta name="twitter:title" content="laydate与angularjs集成的取值问题">
+<meta name="twitter:description" content="laydate与angularjs集成 ng-model的取值问题 laydate-v5.0.9">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://759716722.github.io/blog/2018/04/27/集成Layer和Laydate问题/"/>
+  <link rel="canonical" href="https://759716722.github.io/blog/2018/05/31/laydate与angularjs集成的取值问题/"/>
 
 
 
 
 
-  <title>集成layer和laydate的问题 | 魏有标的博客</title>
+  <title>laydate与angularjs集成的取值问题 | 魏有标的博客</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/04/27/集成Layer和Laydate问题/">
+    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/05/31/laydate与angularjs集成的取值问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyb">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">集成layer和laydate的问题</h1>
+          <h1 class="post-title" itemprop="name headline">laydate与angularjs集成的取值问题</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T10:09:10+08:00">
-                2018-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T16:24:26+08:00">
+                2018-05-31
               </time>
             
 
@@ -324,7 +324,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-31T17:18:17+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-31T17:38:28+08:00">
                 2018-05-31
               </time>
             
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  646
+                  1,450
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  6
                 </span>
               
             </div>
@@ -411,11 +411,14 @@
       
 
       
-        <h2 id="集成layer和laydate的问题"><a href="#集成layer和laydate的问题" class="headerlink" title="集成layer和laydate的问题"></a>集成layer和laydate的问题</h2><a id="more"></a>
-<p>本来我用的提示工具是toastr，后来发现还需要一个confirm的对话框，偶然逛github的时候看到有人提到了这个layer弹层组件，因此知道了layui这个UI框架，官网浏览选中了layer、laydate两个组件。</p>
-<h4 id="layer"><a href="#layer" class="headerlink" title="layer"></a>layer</h4><p>由于不晓得以后是否会改用其他的弹层组件、所以想集中管理layer的使用。因此想写成一个服务去使用，这样即使后来改成其他的组件，也只需要改动服务这块的代码即可(alert、msg、tips等等都可以这样)。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">.factory(<span class="string">'ConfirmService'</span>, [<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        confirm: <span class="function"><span class="keyword">function</span> (<span class="params">title, content, yesFunction, noFunction</span>) </span>&#123;</span><br><span class="line">            layer.confirm(content, &#123;</span><br><span class="line">                title: title,</span><br><span class="line">                btn: [<span class="string">'确定'</span>, <span class="string">'取消'</span>] <span class="comment">//按钮</span></span><br><span class="line">            &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">index</span>) </span>&#123;</span><br><span class="line">                yesFunction();</span><br><span class="line">                layer.close(index);</span><br><span class="line"></span><br><span class="line">            &#125;, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (angular.isFunction(noFunction)) &#123;</span><br><span class="line">                    noFunction();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        alert: <span class="function"><span class="keyword">function</span>(<span class="params">content</span>)</span>&#123;</span><br><span class="line">            layer.alert(content, &#123;</span><br><span class="line">                closeBtn: <span class="number">0</span>,</span><br><span class="line">                anim: <span class="number">1</span> <span class="comment">//动画类型</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        message: <span class="function"><span class="keyword">function</span>(<span class="params">content</span>)</span>&#123;</span><br><span class="line">            layer.msg(content, &#123;</span><br><span class="line">                offset:<span class="string">'t'</span>,</span><br><span class="line">                shift:<span class="number">0</span>,</span><br><span class="line">                time:<span class="number">1200</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;])</span><br><span class="line"></span><br><span class="line">此时只需要在需要使用的controller里注入该服务即可，使用方式如下：</span><br><span class="line">$scope.doDelete = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">        $scope.delId = id;</span><br><span class="line">        ConfirmService.confirm(<span class="string">'提示'</span>, <span class="string">'确定删除该数据吗？'</span>, $scope.yesDelete,<span class="literal">null</span>);</span><br><span class="line">&#125;</span><br><span class="line">$scope.yesDelete = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> url = <span class="string">'***********?id='</span>+$scope.delId;</span><br><span class="line">        ConfirmService.alert(<span class="number">11111</span>);</span><br><span class="line">        ConfirmService.message(<span class="number">11111</span>);</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="laydate"><a href="#laydate" class="headerlink" title="laydate"></a>laydate</h4><p>采用自定义指令的方式集成laydate报错如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">TypeError</span>: Cannot read property <span class="string">'toLocaleLowerCase'</span> <span class="keyword">of</span> <span class="literal">undefined</span></span><br><span class="line">    at T.isInput (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:573:47)</span></span><br><span class="line">    at T.init (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:213:177)</span></span><br><span class="line">    at file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:51:15</span></span><br><span class="line">    at c (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:24:171)</span></span><br><span class="line">    at <span class="built_in">Object</span>.link (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:25:18)</span></span><br><span class="line">    at <span class="built_in">Object</span>.ready (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:39:50)</span></span><br><span class="line">    at <span class="keyword">new</span> T (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:50:80)</span></span><br><span class="line">    at <span class="built_in">Object</span>.n.render (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:588:17)</span></span><br><span class="line">    at link (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/modules/core/directives.js:12:25)</span></span><br><span class="line">    at file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/angular/angular.min.js:1829:38 &lt;input laydate="" class="ng-isolate-scope"&gt;</span></span><br></pre></td></tr></table></figure></p>
+        <h2 id="laydate与angularjs集成-ng-model的取值问题-laydate-v5-0-9"><a href="#laydate与angularjs集成-ng-model的取值问题-laydate-v5-0-9" class="headerlink" title="laydate与angularjs集成 ng-model的取值问题 laydate-v5.0.9"></a>laydate与angularjs集成 ng-model的取值问题 laydate-v5.0.9</h2><a id="more"></a>
+<p>上遍<a href="/blog/2018/04/27/集成Layer和Laydate问题/">集成layer和laydate的问题</a>只简单的用指令实现了日期选择器的调用，并未涉及到取值的问题。今天在造轮子的时候才遇到这个问题，这里将做个汇总记录。</p>
+<p>1.采用自定义指令的方式集成laydate报错如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">TypeError</span>: Cannot read property <span class="string">'toLocaleLowerCase'</span> <span class="keyword">of</span> <span class="literal">undefined</span></span><br><span class="line">    at T.isInput (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:573:47)</span></span><br><span class="line">    at T.init (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:213:177)</span></span><br><span class="line">    at file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:51:15</span></span><br><span class="line">    at c (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:24:171)</span></span><br><span class="line">    at <span class="built_in">Object</span>.link (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:25:18)</span></span><br><span class="line">    at <span class="built_in">Object</span>.ready (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:39:50)</span></span><br><span class="line">    at <span class="keyword">new</span> T (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:50:80)</span></span><br><span class="line">    at <span class="built_in">Object</span>.n.render (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/jquery/laydate/laydate.js:588:17)</span></span><br><span class="line">    at link (file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/modules/core/directives.js:12:25)</span></span><br><span class="line">    at file:<span class="comment">///E:/work/springmvc-spring-mybatis-study/src/main/webapp/lib/angular/angular.min.js:1829:38 &lt;input laydate="" class="ng-isolate-scope"&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>调试发现 <code>return /input|textarea/.test(e.tagName.toLocaleLowerCase())</code> 这里的 e.tagName undefined ,原因是我们传进来的 e 是一个数组,因此改下我们的指令代码即可：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">link: <span class="function"><span class="keyword">function</span>(<span class="params">scope,el,attrs</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">var</span> type = <span class="string">'date'</span>;</span><br><span class="line">          <span class="keyword">var</span> format = <span class="string">'yyyy-MM-dd'</span>;</span><br><span class="line">          laydate.render(&#123;</span><br><span class="line">              elem: el[<span class="number">0</span>],    <span class="comment">// 把这里的el改为el[0]  搞定</span></span><br><span class="line">              type: type,</span><br><span class="line">              format: format</span><br><span class="line">          &#125;);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.ng-model取不到值<br>通过指令集成之后，我们发现在使用的时候ng-model=”xxx”并不能获取到值，但是页面上是有值的。这个时候肯定是去找解决方案啊，百度了一大堆都指向这篇文章<a href="http://www.cnblogs.com/e50000/p/5663806.html" target="_blank" rel="noopener">Angularjs 中使用 layDate 日期控件</a>这个并不是我想要的，时间很久了，而且使用的时候还要搞个id属性麻烦。看了半天自己写的指令，并没有什么问题啊，就是取不到值，$watch也监听不到，后来只能使用laydate的回调方法试试。结果搞了半天还用错了，网上大多都是很早版本的，他们的回调方法都是choose，调试了半天没用。没办法了这才想起来去官网看下文档。一看才发现是选择完毕后的回调方法是done，还有个chang是在用上方的4个按钮触发的函数，这也是为什么我在标题上加了版本号。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*日期选择器指令，只能以元素的方式使用，使用方式如下:</span></span><br><span class="line"><span class="comment">  * &lt;laydate class="form-control" ng-model="searchData.theDate"&gt;&#123;&#123;searchData.theDate&#125;&#125;&lt;/laydate&gt;</span></span><br><span class="line"><span class="comment">  * &#123;&#123;searchData.theDate&#125;&#125; 一定要有这个，不然显示的数据会在一些特殊的情况下出现问题，这个下面会解释。</span></span><br><span class="line"><span class="comment">  * @ngModel 绑定的数据</span></span><br><span class="line"><span class="comment">  * @dateType 选择器的类型 可以不使用，默认 date</span></span><br><span class="line"><span class="comment">  * 参数类型 ：datetime 日期时间选择器 year 年选择器 month 年月选择器 date 日期选择器 time 时间选择器</span></span><br><span class="line"><span class="comment">  * @format  自定义格式  可以不使用，默认 yyyy-MM-dd</span></span><br><span class="line"><span class="comment">  * 参数类型 ：参见 http://www.layui.com/doc/modules/laydate.html#format</span></span><br><span class="line"><span class="comment">  * */</span></span><br><span class="line">  .directive(<span class="string">'laydate'</span>,[<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span>&#123;</span><br><span class="line">          restrict: <span class="string">'E'</span>,</span><br><span class="line">          scope: &#123;</span><br><span class="line">              ngModel: <span class="string">'='</span>,</span><br><span class="line">              dateType: <span class="string">'@'</span>,</span><br><span class="line">              format: <span class="string">'@'</span></span><br><span class="line">          &#125;,</span><br><span class="line">          link: <span class="function"><span class="keyword">function</span>(<span class="params">scope,el,attrs</span>)</span>&#123;</span><br><span class="line">              <span class="comment">// 默认值</span></span><br><span class="line">              <span class="keyword">var</span> type = <span class="string">'date'</span>;</span><br><span class="line">              <span class="keyword">var</span> format = <span class="string">'yyyy-MM-dd'</span>;</span><br><span class="line">              <span class="keyword">if</span>(scope.dateType)&#123;</span><br><span class="line">                  type = scope.dateType;</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">if</span>(scope.format)&#123;</span><br><span class="line">                  format = scope.format;</span><br><span class="line">              &#125;</span><br><span class="line">              laydate.render(&#123;</span><br><span class="line">                  elem: el[<span class="number">0</span>],</span><br><span class="line">                  type: type,</span><br><span class="line">                  format: format,</span><br><span class="line">                  calendar: <span class="literal">true</span>,     <span class="comment">//显示节日</span></span><br><span class="line">                  mark: &#123;             <span class="comment">//自定义标注重要日子</span></span><br><span class="line">                      <span class="string">'0-12-31'</span>: <span class="string">'跨年'</span>, <span class="comment">//每年的日期</span></span><br><span class="line">                      <span class="string">'0-0-10'</span>: <span class="string">'工资'</span> <span class="comment">//每月某天</span></span><br><span class="line">                  &#125;,</span><br><span class="line">                  done: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">                      scope.$apply(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                          scope.ngModel = data;</span><br><span class="line">                      &#125;)</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;);</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;])</span><br></pre></td></tr></table></figure></p>
+<p>这里说明下$watch监听不到值变化的原因：<br>layate操作HTML元素的方式是在调用的时候在页面上创建新的HTML元素（即选择日期框）,它是把选取到的数据绑定在了该元素上，可通过$(‘#id’).val()获取值，但是不能实现ng-model的数据绑定。所以我们用选择完毕后的回调方法done进行赋值<code>done: function(data){scope.ngModel = data;}</code>,但是这个时候用$watch监听ngModel是不触发的，不论是在自定义指令还是在控制器里都监听不到值。因此需要使用$apply触发脏检查。<code>done: function(data){scope.$apply(function(){scope.ngModel = data;})}</code></p>
+<p>为什么一定要有这个<code>｛｛xxxx｝｝</code>，刚刚也讲到laydate是把选取到的数据绑定在了该元素上,所以如果不加 展示的就是我们选择的值(有些拗口)，并不是我们ng-model绑定的值，这里一般情况下并没有问题，但是特殊的情况下会出现问题，比如我们有开始日期和结束日期两个变量，一般都是复制粘贴，所以会出现ng-model=”searchData.startDate”忘了改的情况，那这个时候按理来说忘了改关系也不大。但这个时候你去选择的时候会发现，我开始日期选得是2018-05-31，结束日期并没有值，选结束日期为2018-06-30的时候开始日期的值也没变还是原来的值。同一个变量为什么会不变呢，原因上面也说过了，这里展示的并不是ng-model绑定的变量值，而是把选取到的数据绑定在了该元素上而已，所以我们需要用<code>｛｛xxxx｝｝</code>把它覆盖掉，展示真正的数据。</p>
+<p>至此该指令已经满足我现阶段的使用情况，对于些需要有日期选择范围限制的可自行修改，加几个参数就OK了。</p>
 
       
     </div>
@@ -440,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/04/18/集成Shiro+Ehcache+Druid+Log4J的问题/" rel="next" title="集成Shiro+Ehcache+Druid+Log4J的问题">
-                <i class="fa fa-chevron-left"></i> 集成Shiro+Ehcache+Druid+Log4J的问题
+              <a href="/blog/2018/05/23/Git常用命令/" rel="next" title="Git常用命令">
+                <i class="fa fa-chevron-left"></i> Git常用命令
               </a>
             
           </div>
@@ -449,10 +452,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/05/08/Navicat连接Orcale问题/" rel="prev" title="Navicat连接Orcale问题">
-                Navicat连接Orcale问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -579,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集成layer和laydate的问题"><span class="nav-number">1.</span> <span class="nav-text">集成layer和laydate的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#layer"><span class="nav-number">1.0.1.</span> <span class="nav-text">layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#laydate"><span class="nav-number">1.0.2.</span> <span class="nav-text">laydate</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#laydate与angularjs集成-ng-model的取值问题-laydate-v5-0-9"><span class="nav-number">1.</span> <span class="nav-text">laydate与angularjs集成 ng-model的取值问题 laydate-v5.0.9</span></a></li></ol></div>
             
 
           </div>
