@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="jta-atomikos多数据源分布式事务问题记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-18T05:10:35.760Z">
+<meta property="og:updated_time" content="2018-07-18T05:28:50.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Atomikos分布式事务问题记录">
 <meta name="twitter:description" content="jta-atomikos多数据源分布式事务问题记录">
@@ -324,7 +324,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-18T13:10:35+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-18T13:28:50+08:00">
                 2018-07-18
               </time>
             
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  225
+                  227
                 </span>
               
 
@@ -412,10 +412,13 @@
 
       
         <h2 id="jta-atomikos多数据源分布式事务问题记录"><a href="#jta-atomikos多数据源分布式事务问题记录" class="headerlink" title="jta-atomikos多数据源分布式事务问题记录"></a>jta-atomikos多数据源分布式事务问题记录</h2><a id="more"></a>
-<p>javax.transaction.xa.XAException: java.sql.SQLException:无法创建 XA 控制连接。错误: 未能找到存储过程’master..xp_sqljdbc_xa_init’</p>
+<ol>
+<li>javax.transaction.xa.XAException: java.sql.SQLException:无法创建 XA 控制连接。错误: 未能找到存储过程’master..xp_sqljdbc_xa_init’</li>
+</ol>
 <p>参考<br><a href="https://docs.microsoft.com/zh-cn/sql/connect/jdbc/understanding-xa-transactions?view=sql-server-2017" target="_blank" rel="noopener">了解 XA 事务</a><br><a href="https://blog.csdn.net/gjf8510/article/details/16118687" target="_blank" rel="noopener">错误: 未能找到存储过程’master..xp_sqljdbc_xa_init’</a></p>
-<p>MSDTC 服务不能启动的几个解决方法 </p>
-<p>开始→运行→输入命令”net start msdtc”,运行该命令即可。<br>如果启动不了，错误:msdtc无法启动，发生服务特定错误3221229584<br>网上查找资料说：主要是系统无法找到MS DTC 日志文件造成的,只要创建一下就可以了:<br>点开始→运行→输入命令”msdtc -resetlog”,运行该命令即可。<br>之后,重新启动电脑,或者运行服务中的”Distributed Transaction Coordinator “服务均可.</p>
+<ol start="2">
+<li>MSDTC 服务不能启动的几个解决方法<br>开始→运行→输入命令”net start msdtc”,运行该命令即可。<br>如果启动不了，错误:msdtc无法启动，发生服务特定错误3221229584<br>网上查找资料说：主要是系统无法找到MS DTC 日志文件造成的,只要创建一下就可以了:<br>点开始→运行→输入命令”msdtc -resetlog”,运行该命令即可。<br>之后,重新启动电脑,或者运行服务中的”Distributed Transaction Coordinator “服务均可.</li>
+</ol>
 <p>Error while retrieving xids from resource - will retry later…<br>javax.transaction.xa.XAException: 函数 RECOVER: 失败。状态为: -3。错误:“<strong><em> SQLJDBC_XA DTC_ERROR Context: xa_recover, state=1, StatusCode:-3 (0xFFFFFFFD) </em></strong>”</p>
 
       
@@ -614,7 +617,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.6k</span>
+    <span title="Site words total count">15.7k</span>
   
 </div>
 
