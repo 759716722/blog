@@ -86,17 +86,17 @@
 
 
 
-<meta name="description" content="添加链接服务器实现跨库访问">
+<meta name="description" content="SQL SERVER 添加链接服务器实现跨库访问">
 <meta property="og:type" content="article">
 <meta property="og:title" content="添加链接服务器实现跨库访问">
 <meta property="og:url" content="https://759716722.github.io/blog/2018/05/22/添加链接服务器实现跨库访问/index.html">
 <meta property="og:site_name" content="魏有标的博客">
-<meta property="og:description" content="添加链接服务器实现跨库访问">
+<meta property="og:description" content="SQL SERVER 添加链接服务器实现跨库访问">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T09:15:23.142Z">
+<meta property="og:updated_time" content="2018-07-18T03:14:52.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="添加链接服务器实现跨库访问">
-<meta name="twitter:description" content="添加链接服务器实现跨库访问">
+<meta name="twitter:description" content="SQL SERVER 添加链接服务器实现跨库访问">
 
 
 
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-22T17:15:23+08:00">
-                2018-05-22
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-18T11:14:52+08:00">
+                2018-07-18
               </time>
             
           </span>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  646
+                  636
                 </span>
               
 
@@ -411,8 +411,58 @@
       
 
       
-        <h2 id="添加链接服务器实现跨库访问"><a href="#添加链接服务器实现跨库访问" class="headerlink" title="添加链接服务器实现跨库访问"></a>添加链接服务器实现跨库访问</h2><a id="more"></a>
-<p>|存储过程名/视图名        |作用                |举例<br>|sp_addlinkedserver      |注册远程数据库实例    |exec sp_addlinkedserver ‘InstanceName’<br>|sp_dropserver           |删除远程数据库实例    |exec sp_dropserver ‘InstanceName’<br>|sp_addlinkedsrvlogin    |注册远程实例登陆访问帐户 |exec sp_addlinkedsrvlogin ‘InstanceName’, null<br>|sp_droplinkedsrvlogin   |删除远程实例登陆访问帐户 |EXEC sp_droplinkedsrvlogin ‘InstanceName’,’UserName’<br>|sp_helpserver           |当前实例已注册的可访问的实例(即查看使用sp_addlinkedserver已注册过的实例) |sp_helpserver<br>|sys.sysservers          |功能同sp_helpserver  |select <em> from sys.sysservers<br>|sys.linked_logins       |查看已注册的登陆访问帐户(即查看使用sp_addlinkedsrvlogin已注册过的帐户) |select </em> from sys.linked_logins<br>|sys.remote_logins       |查看已注册的远端访问帐户 |select * from sys.remote_logins</p>
+        <h2 id="SQL-SERVER-添加链接服务器实现跨库访问"><a href="#SQL-SERVER-添加链接服务器实现跨库访问" class="headerlink" title="SQL SERVER 添加链接服务器实现跨库访问"></a>SQL SERVER 添加链接服务器实现跨库访问</h2><a id="more"></a>
+<table>
+<thead>
+<tr>
+<th>存储过程名/视图名</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sp_addlinkedserver</td>
+<td style="text-align:center">注册远程数据库实例</td>
+<td style="text-align:center">exec sp_addlinkedserver ‘InstanceName’</td>
+</tr>
+<tr>
+<td>sp_dropserver</td>
+<td style="text-align:center">删除远程数据库实例</td>
+<td style="text-align:center">exec sp_dropserver ‘InstanceName’</td>
+</tr>
+<tr>
+<td>sp_addlinkedsrvlogin</td>
+<td style="text-align:center">注册远程实例登陆访问帐户</td>
+<td style="text-align:center">exec sp_addlinkedsrvlogin ‘InstanceName’, null</td>
+</tr>
+<tr>
+<td>sp_droplinkedsrvlogin</td>
+<td style="text-align:center">删除远程实例登陆访问帐户</td>
+<td style="text-align:center">EXEC sp_droplinkedsrvlogin ‘InstanceName’,’UserName’</td>
+</tr>
+<tr>
+<td>sp_helpserver</td>
+<td style="text-align:center">当前实例已注册的可访问的实例(即查看使用sp_addlinkedserver已注册过的实例)</td>
+<td style="text-align:center">sp_helpserver</td>
+</tr>
+<tr>
+<td>sys.sysservers</td>
+<td style="text-align:center">功能同sp_helpserver</td>
+<td style="text-align:center">select * from sys.sysservers</td>
+</tr>
+<tr>
+<td>sys.linked_logins</td>
+<td style="text-align:center">查看已注册的登陆访问帐户(即查看使用sp_addlinkedsrvlogin已注册过的帐户)</td>
+<td style="text-align:center">select * from sys.linked_logins</td>
+</tr>
+<tr>
+<td>sys.remote_logins</td>
+<td style="text-align:center">查看已注册的远端访问帐户</td>
+<td style="text-align:center">select * from sys.remote_logins</td>
+</tr>
+</tbody>
+</table>
 <p>Exec sp_droplinkedsrvlogin ZYB,Null –删除映射（录与链接服务器上远程登录之间的映射）<br>Exec sp_dropserver ZYB –删除远程服务器链接 </p>
 <p>EXEC sp_addlinkedserver<br>@server=’ZYB’,–被访问的服务器别名<br>@srvproduct=’’,<br>@provider=’SQLOLEDB’,<br>@datasrc=”/Server2” –要访问的服务器 </p>
 <p>EXEC sp_addlinkedsrvlogin<br>‘ZYB’, –被访问的服务器别名<br>‘false’,<br>NULL,<br>‘sa’, –帐号<br>‘sa’ –密码 </p>
@@ -593,7 +643,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加链接服务器实现跨库访问"><span class="nav-number">1.</span> <span class="nav-text">添加链接服务器实现跨库访问</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-SERVER-添加链接服务器实现跨库访问"><span class="nav-number">1.</span> <span class="nav-text">SQL SERVER 添加链接服务器实现跨库访问</span></a></li></ol></div>
             
 
           </div>
