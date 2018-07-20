@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="使用Redis过程中的问题收集">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-20T08:28:01.469Z">
+<meta property="og:updated_time" content="2018-07-20T08:30:46.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装、使用Redis">
 <meta name="twitter:description" content="使用Redis过程中的问题收集">
@@ -324,7 +324,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-20T16:28:01+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-20T16:30:46+08:00">
                 2018-07-20
               </time>
             
@@ -413,9 +413,7 @@
       
         <h2 id="使用Redis过程中的问题收集"><a href="#使用Redis过程中的问题收集" class="headerlink" title="使用Redis过程中的问题收集"></a>使用Redis过程中的问题收集</h2><a id="more"></a>
 <p><a href="http://download.redis.io/releases/" target="_blank" rel="noopener">各版本下载地址</a><br><a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="noopener">windows版本下载</a></p>
-<p>1.windows下使用Redis<br>下载相关包后，右键解压Redis ZIP包。</p>
-<p>cmd 进入到redis目录下，使用 redis-server.exe redis.windows.conf  启动redis服务，doc窗口不要关闭，关闭服务就停了。127.0.0.1:6379 默认是6379端口，可在redis.windows.conf中更改，同样可以搜索 SECURITY 找到 requirepass 设置密码，eg: requirepass 123456</p>
-<p>新打开一个doc窗口进入到redis目录下，使用 redis-cli.exe 自带的客户端工具测试，eg: set name qq 如果设置密码则需要认证，get name 即可获得 qq,以下是一些基础命令：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keys *  或  keys "*"   --查看所有key</span><br><span class="line">keys "miao*"           --查看匹配前缀的keys</span><br><span class="line">flushdb                --清空redis</span><br><span class="line">randomkey              --随机取出一个key</span><br><span class="line"><span class="built_in">type</span> key               --查看key的类型</span><br><span class="line">dbsize                 --查看数据库中key的数量</span><br><span class="line">info                   --查看服务器信息</span><br></pre></td></tr></table></figure></p>
+<p>1.windows下使用Redis<br>下载相关包后，右键解压Redis ZIP包。<br>cmd 进入到redis目录下，使用 redis-server.exe redis.windows.conf  启动redis服务，doc窗口不要关闭，关闭服务就停了。127.0.0.1:6379 默认是6379端口，可在redis.windows.conf中更改，同样可以搜索 SECURITY 找到 requirepass 设置密码，eg: requirepass 123456<br>新打开一个doc窗口进入到redis目录下，使用 redis-cli.exe 自带的客户端工具测试，eg: set name qq 如果设置密码则需要认证，get name 即可获得 qq,以下是一些基础命令：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keys *  或  keys "*"   --查看所有key</span><br><span class="line">keys "miao*"           --查看匹配前缀的keys</span><br><span class="line">flushdb                --清空redis</span><br><span class="line">randomkey              --随机取出一个key</span><br><span class="line"><span class="built_in">type</span> key               --查看key的类型</span><br><span class="line">dbsize                 --查看数据库中key的数量</span><br><span class="line">info                   --查看服务器信息</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
