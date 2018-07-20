@@ -88,14 +88,14 @@
 
 <meta name="description" content="使用Redis过程中的问题收集">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis">
+<meta property="og:title" content="安装、使用Redis">
 <meta property="og:url" content="https://759716722.github.io/blog/2018/04/10/安装、使用Redis/index.html">
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="使用Redis过程中的问题收集">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-12T13:07:32.596Z">
+<meta property="og:updated_time" content="2018-07-20T08:28:01.469Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis">
+<meta name="twitter:title" content="安装、使用Redis">
 <meta name="twitter:description" content="使用Redis过程中的问题收集">
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <title>Redis | 魏有标的博客</title>
+  <title>安装、使用Redis | 魏有标的博客</title>
   
 
 
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Redis</h1>
+          <h1 class="post-title" itemprop="name headline">安装、使用Redis</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-12T21:07:32+08:00">
-                2018-04-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-20T16:28:01+08:00">
+                2018-07-20
               </time>
             
           </span>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  30
+                  236
                 </span>
               
 
@@ -413,7 +413,9 @@
       
         <h2 id="使用Redis过程中的问题收集"><a href="#使用Redis过程中的问题收集" class="headerlink" title="使用Redis过程中的问题收集"></a>使用Redis过程中的问题收集</h2><a id="more"></a>
 <p><a href="http://download.redis.io/releases/" target="_blank" rel="noopener">各版本下载地址</a><br><a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="noopener">windows版本下载</a></p>
-<p>内容待整理更新</p>
+<p>1.windows下使用Redis<br>下载相关包后，右键解压Redis ZIP包。</p>
+<p>cmd 进入到redis目录下，使用 redis-server.exe redis.windows.conf  启动redis服务，doc窗口不要关闭，关闭服务就停了。127.0.0.1:6379 默认是6379端口，可在redis.windows.conf中更改，同样可以搜索 SECURITY 找到 requirepass 设置密码，eg: requirepass 123456</p>
+<p>新打开一个doc窗口进入到redis目录下，使用 redis-cli.exe 自带的客户端工具测试，eg: set name qq 如果设置密码则需要认证，get name 即可获得 qq,以下是一些基础命令：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keys *  或  keys "*"   --查看所有key</span><br><span class="line">keys "miao*"           --查看匹配前缀的keys</span><br><span class="line">flushdb                --清空redis</span><br><span class="line">randomkey              --随机取出一个key</span><br><span class="line"><span class="built_in">type</span> key               --查看key的类型</span><br><span class="line">dbsize                 --查看数据库中key的数量</span><br><span class="line">info                   --查看服务器信息</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -438,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/04/10/安装虚拟机，使用Linux系统/" rel="next" title="Windows安装虚拟机使用Linux系统">
-                <i class="fa fa-chevron-left"></i> Windows安装虚拟机使用Linux系统
+              <a href="/blog/2018/04/10/深入学习Redis/" rel="next" title="深入学习Redis">
+                <i class="fa fa-chevron-left"></i> 深入学习Redis
               </a>
             
           </div>
@@ -448,8 +450,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2018/04/12/文章收集/" rel="prev" title="文章收集">
-                文章收集 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2018/04/10/安装虚拟机，使用Linux系统/" rel="prev" title="Windows安装虚拟机使用Linux系统">
+                Windows安装虚拟机使用Linux系统 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -611,7 +613,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.7k</span>
+    <span title="Site words total count">15.9k</span>
   
 </div>
 
