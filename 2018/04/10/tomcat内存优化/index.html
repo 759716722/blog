@@ -86,17 +86,17 @@
 
 
 
-<meta name="description" content="Log4j分别打印console,info,warn,error,show_sql日志文件">
+<meta name="description" content="Tomcat内存优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Log4j分别打印不同级别的日志文件">
-<meta property="og:url" content="https://759716722.github.io/blog/2018/07/12/Log4j分别打印不同级别的日志文件/index.html">
+<meta property="og:title" content="Tomcat内存优化">
+<meta property="og:url" content="https://759716722.github.io/blog/2018/04/10/tomcat内存优化/index.html">
 <meta property="og:site_name" content="魏有标的博客">
-<meta property="og:description" content="Log4j分别打印console,info,warn,error,show_sql日志文件">
+<meta property="og:description" content="Tomcat内存优化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-02T09:02:13.083Z">
+<meta property="og:updated_time" content="2018-08-02T05:07:29.855Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Log4j分别打印不同级别的日志文件">
-<meta name="twitter:description" content="Log4j分别打印console,info,warn,error,show_sql日志文件">
+<meta name="twitter:title" content="Tomcat内存优化">
+<meta name="twitter:description" content="Tomcat内存优化">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://759716722.github.io/blog/2018/07/12/Log4j分别打印不同级别的日志文件/"/>
+  <link rel="canonical" href="https://759716722.github.io/blog/2018/04/10/tomcat内存优化/"/>
 
 
 
 
 
-  <title>Log4j分别打印不同级别的日志文件 | 魏有标的博客</title>
+  <title>Tomcat内存优化 | 魏有标的博客</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/07/12/Log4j分别打印不同级别的日志文件/">
+    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/04/10/tomcat内存优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyb">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Log4j分别打印不同级别的日志文件</h1>
+          <h1 class="post-title" itemprop="name headline">Tomcat内存优化</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-12T11:04:40+08:00">
-                2018-07-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T08:57:07+08:00">
+                2018-04-10
               </time>
             
 
@@ -324,7 +324,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T17:02:13+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T13:07:29+08:00">
                 2018-08-02
               </time>
             
@@ -343,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/blog/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  599
+                  991
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -411,24 +411,22 @@
       
 
       
-        <h2 id="Log4j分别打印console-info-warn-error-show-sql日志文件"><a href="#Log4j分别打印console-info-warn-error-show-sql日志文件" class="headerlink" title="Log4j分别打印console,info,warn,error,show_sql日志文件"></a>Log4j分别打印console,info,warn,error,show_sql日志文件</h2><a id="more"></a>
-<p>log4j.rootLogger=INFO,console,info,warn,error</p>
-<p>#输出到控制台<br>log4j.appender.console=org.apache.log4j.ConsoleAppender<br>log4j.appender.console.Target=System.out<br>log4j.appender.console.Threshold=DEBUG<br>log4j.appender.console.layout=org.apache.log4j.PatternLayout<br>log4j.appender.console.layout.ConversionPattern=%d %p [%c] - &lt;%m&gt;%n</p>
-<p>#log4j.appender.stdout.layout.ConversionPattern=[%p][%d{yyyy-MM-dd HH:mm:ss}] %l %m %n</p>
-<p>#INFO日志<br>log4j.appender.info=org.apache.log4j.DailyRollingFileAppender<br>log4j.appender.info.File = ${catalina.base}/logs/info.log<br>log4j.appender.info.datePattern=’.’yyyy-MM-dd<br>log4j.appender.info.append=true<br>log4j.appender.info.Threshold=INFO<br>log4j.appender.info.layout=org.apache.log4j.PatternLayout<br>log4j.appender.info.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %p [%l] %m %n</p>
-<p>#WARN日志<br>log4j.appender.warn=org.apache.log4j.DailyRollingFileAppender<br>log4j.appender.warn.File = ${catalina.base}/logs/warn.log<br>log4j.appender.warn.datePattern=’.’yyyy-MM-dd<br>log4j.appender.warn.append=true<br>log4j.appender.warn.Threshold=WARN<br>log4j.appender.warn.layout=org.apache.log4j.PatternLayout<br>log4j.appender.warn.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %p [%l] %m %n</p>
-<p>#ERROR日志<br>log4j.appender.error=org.apache.log4j.DailyRollingFileAppender<br>log4j.appender.error.File = ${catalina.base}/logs/error.log<br>log4j.appender.error.datePattern=’.’yyyy-MM-dd<br>log4j.appender.error.append=true<br>log4j.appender.error.Threshold=ERROR<br>log4j.appender.error.layout=org.apache.log4j.PatternLayout<br>log4j.appender.error.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %p [%l] %m %n</p>
-<h1 id="SQL日志"><a href="#SQL日志" class="headerlink" title="SQL日志"></a>SQL日志</h1><p>log4j.appender.showsql=org.apache.log4j.DailyRollingFileAppender<br>log4j.appender.showsql.File = ${catalina.base}/logs/slow_sql.log<br>log4j.appender.showsql.datePattern=’.’yyyy-MM-dd<br>log4j.appender.showsql.append=true<br>log4j.appender.showsql.layout=org.apache.log4j.PatternLayout<br>log4j.appender.showsql.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %p [%c] %m %n</p>
-<p>#druid 日志</p>
-<p>#log4j.logger.druid.sql.Statement=DEBUG,showsql</p>
-<p>#log4j.logger.druid.sql.DataSource=warn,showsql</p>
-<p>#log4j.logger.druid.sql.Connection=warn,showsql</p>
-<p>#log4j.logger.druid.sql.ResultSet=warn,showsql</p>
-<p>#mybatis显示SQL语句日志配置<br>log4j.logger.com.jwei.sys.dao=DEBUG,showsql<br>log4j.logger.com.jwei.rad.dao=DEBUG,showsql</p>
-<p>#log4j.logger.java.sql.Connection=DEBUG</p>
-<p>#log4j.logger.java.sql.Statement=DEBUG</p>
-<p>#log4j.logger.java.sql.PreparedStatement=DEBUG</p>
-<h1 id="c-输出日志信息所属的类的全名"><a href="#c-输出日志信息所属的类的全名" class="headerlink" title="%c 输出日志信息所属的类的全名"></a>%c 输出日志信息所属的类的全名</h1><h1 id="d-输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：-d-yyy-MM-dd-HH-mm-ss-，输出类似：2018-08-02-16-54-04"><a href="#d-输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：-d-yyy-MM-dd-HH-mm-ss-，输出类似：2018-08-02-16-54-04" class="headerlink" title="%d 输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyy-MM-dd HH:mm:ss}，输出类似：2018-08-02 16:54:04"></a>%d 输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyy-MM-dd HH:mm:ss}，输出类似：2018-08-02 16:54:04</h1><h1 id="f-输出日志信息所属的类的类名"><a href="#f-输出日志信息所属的类的类名" class="headerlink" title="%f 输出日志信息所属的类的类名"></a>%f 输出日志信息所属的类的类名</h1><h1 id="l-输出日志事件的发生位置，即输出日志信息的语句处于它所在的类的第几行"><a href="#l-输出日志事件的发生位置，即输出日志信息的语句处于它所在的类的第几行" class="headerlink" title="%l 输出日志事件的发生位置，即输出日志信息的语句处于它所在的类的第几行"></a>%l 输出日志事件的发生位置，即输出日志信息的语句处于它所在的类的第几行</h1><h1 id="m-输出代码中指定的信息，如log-message-中的message"><a href="#m-输出代码中指定的信息，如log-message-中的message" class="headerlink" title="%m 输出代码中指定的信息，如log(message)中的message"></a>%m 输出代码中指定的信息，如log(message)中的message</h1><h1 id="n-输出一个回车换行符，Windows平台为“rn”，Unix平台为“n”"><a href="#n-输出一个回车换行符，Windows平台为“rn”，Unix平台为“n”" class="headerlink" title="%n 输出一个回车换行符，Windows平台为“rn”，Unix平台为“n”"></a>%n 输出一个回车换行符，Windows平台为“rn”，Unix平台为“n”</h1><h1 id="p-输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL。如果是调用debug-输出的，则为DEBUG，依此类推"><a href="#p-输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL。如果是调用debug-输出的，则为DEBUG，依此类推" class="headerlink" title="%p 输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL。如果是调用debug()输出的，则为DEBUG，依此类推"></a>%p 输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL。如果是调用debug()输出的，则为DEBUG，依此类推</h1><h1 id="r-输出自应用启动到输出该日志信息所耗费的毫秒数"><a href="#r-输出自应用启动到输出该日志信息所耗费的毫秒数" class="headerlink" title="%r 输出自应用启动到输出该日志信息所耗费的毫秒数"></a>%r 输出自应用启动到输出该日志信息所耗费的毫秒数</h1><h1 id="t-输出产生该日志事件的线程名"><a href="#t-输出产生该日志事件的线程名" class="headerlink" title="%t 输出产生该日志事件的线程名"></a>%t 输出产生该日志事件的线程名</h1>
+        <h2 id="Tomcat内存优化"><a href="#Tomcat内存优化" class="headerlink" title="Tomcat内存优化"></a>Tomcat内存优化</h2><a id="more"></a>
+<p>JAVA_OPTS参数说明：<br>-server                         启用jdk 的 server 版<br>-Xms                                 JVM初始分配的最小堆内存  默认是物理内存的1/64<br>-Xmx                                 JVM最大允许分配的堆内存，按需分配  默认是物理内存的1/4<br>-XX: PermSize             内存永久保留区域 JVM初始分配的非堆内存<br>-XX:MaxPermSize            内存最大永久保留区域 JVM最大允许分配的非堆内存，按需分配</p>
+<p>JVM初始分配的堆内存由-Xms指定，默认是物理内存的1/64；<br>JVM最大分配的堆内存由-Xmx指定，默认是物理内存的1/4。默认空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制；<br>空余堆内存大于70%时，JVM会减少堆直到-Xms的最小限制。因此服务器一般设置-Xms、-Xmx 相等以避免在每次GC 后调整堆的大小。</p>
+<p>1.java.lang.OutOfMemoryError: Java heap space<br>解释： Heap size 设置 JVM堆的设置是指java程序运行过程中JVM可以调配使用的内存空间的设置.JVM在启动的时候会自动设置Heap size的值，其初始空间(即-Xms)是物理内存的1/64，最大空间(-Xmx)是物理内存的1/4。可以利用JVM提供的-Xmn -Xms -Xmx等选项可进行设置。Heap size 的大小是Young Generation 和Tenured Generaion 之和。<br>提示：在JVM中如果98％的时间是用于GC且可用的Heap size 不足2％的时候将抛出此异常信息。 Heap Size 最大不要超过可用物理内存的80％，一般的要将-Xms和-Xmx选项设置为相同，而-Xmn为1/4的-Xmx值。 </p>
+<p>2.java.lang.OutOfMemoryError: PermGen space 原因： PermGen space的全称是Permanent Generation space,是指内存的永久保存区域，这块内存主要是被JVM存放Class和Meta信息的,Class在被Loader时就会被放到PermGen space中，它和存放类实例(Instance)的Heap区域不同,GC(Garbage Collection)不会在主程序运行期对PermGen space进行清理，所以如果你的应用中有很CLASS的话,就很可能出现PermGen space错误</p>
+<p>参考：<br><a href="https://blog.csdn.net/crazy_kis/article/details/7535932" target="_blank" rel="noopener">内存溢出之Tomcat内存配置</a><br><a href="https://blog.csdn.net/starwind_/article/details/52938043" target="_blank" rel="noopener">配置tomcat服务器内存大小中的Xms、Xmx、PermSize、MaxPermSize 详解</a></p>
+<p>默认不设置情况下JVM信息如下（本机6G内存）：<br>{“flag”:”Y”,”data”:{“totalMemory”:”390.00MB”,”maxMemory”:”1346.00MB”,”freeMemory”:”265.00MB”,”cpuNum”:4}}</p>
+<p>在catalina.bat最前面增加 set JAVA_OPTS=-Xms128m -Xmx512m 用startup.bat启动tomcat。JVM信息如下<br>{“flag”:”Y”,”data”:{“totalMemory”:”220.00MB”,”maxMemory”:”455.00MB”,”freeMemory”:”105.00MB”,”cpuNum”:4}}<br>OK设置生效</p>
+<p>利用windows的系统服务启动tomcat服务,上面的设置就不生效<br>windows服务运行的是bin\tomcat.exe.他读取注冊表中的值,而不是catalina.bat的设置</p>
+<p>如果遇到点击tomcat8.exe打不开，进入Tomcat\bin\安装目录，输入： service.bat install 即可。</p>
+<p>cmd–&gt;services.msc(或 计算机–&gt;管理–&gt;服务和应用程序–&gt; 服务)，显示已经有Tomcat服务了。再次双击Tomcat8.exe，就可以运行了。<br>JVM信息如下<br>{“flag”:”Y”,”data”:{“totalMemory”:”153.00MB”,”maxMemory”:”228.00MB”,”freeMemory”:”111.00MB”,”cpuNum”:4}}</p>
+<p>解决的方法:</p>
+<p>改动注冊表 HKEY_LOCAL_MACHINE\SOFTWARE\Apache Software Foundation\Tomcat Service Manager\Tomcat5\Parameters\Java\Options<br>找半天没注册表里找不到该信息，经查找说64位系统，tomcat的注册表信息是写在<br>HKEY_LOCAL_MACHINE/SOFTWARE/Wow6432Node/Apache Software Foundation/Procrun 2.0/Tomcat8/Parameters/Java/<br>Options 原值：<br>-Dcatalina.home=F:\apache-tomcat-8.0.52<br>-Dcatalina.base=F:\apache-tomcat-8.0.52<br>-Dignore.endorsed.dirs=F:\apache-tomcat-8.0.52\endorsed<br>-Djava.io.tmpdir=F:\apache-tomcat-8.0.52\temp<br>-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager<br>-Djava.util.logging.config.file=F:\apache-tomcat-8.0.52\conf\logging.properties</p>
+<p>经尝试，在Options后加入  -Xms128m  -Xmx512m 没效果 ，JVM信息如下<br>{“flag”:”Y”,”data”:{“totalMemory”:”154.00MB”,”maxMemory”:”228.00MB”,”freeMemory”:”111.00MB”,”cpuNum”:4}}</p>
+<p>注册表信息 HKEY_LOCAL_MACHINE/SOFTWARE/Wow6432Node/Apache Software Foundation/Procrun 2.0/Tomcat8/Parameters/Java<br>将 JVM的 jvmMs  jvmMx 单独在外面设置了，所以只需该相应的值即可。重起tomcat服务,设置生效。<br>JVM信息如下：<br>{“flag”:”Y”,”data”:{“totalMemory”:”232.00MB”,”maxMemory”:”455.00MB”,”freeMemory”:”119.00MB”,”cpuNum”:4}}</p>
+
       
     </div>
     
@@ -452,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/06/22/Spring Boot问题记录/" rel="next" title="Spring Boot问题记录">
-                <i class="fa fa-chevron-left"></i> Spring Boot问题记录
+              <a href="/blog/2018/04/10/深入学习Redis/" rel="next" title="深入学习Redis">
+                <i class="fa fa-chevron-left"></i> 深入学习Redis
               </a>
             
           </div>
@@ -461,6 +459,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/04/10/安装虚拟机，使用Linux系统/" rel="prev" title="Windows安装虚拟机使用Linux系统">
+                Windows安装虚拟机使用Linux系统 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -587,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Log4j分别打印console-info-warn-error-show-sql日志文件"><span class="nav-number">1.</span> <span class="nav-text">Log4j分别打印console,info,warn,error,show_sql日志文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL日志"><span class="nav-number"></span> <span class="nav-text">SQL日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#c-输出日志信息所属的类的全名"><span class="nav-number"></span> <span class="nav-text">%c 输出日志信息所属的类的全名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#d-输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：-d-yyy-MM-dd-HH-mm-ss-，输出类似：2018-08-02-16-54-04"><span class="nav-number"></span> <span class="nav-text">%d 输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyy-MM-dd HH:mm:ss}，输出类似：2018-08-02 16:54:04</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#f-输出日志信息所属的类的类名"><span class="nav-number"></span> <span class="nav-text">%f 输出日志信息所属的类的类名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#l-输出日志事件的发生位置，即输出日志信息的语句处于它所在的类的第几行"><span class="nav-number"></span> <span class="nav-text">%l 输出日志事件的发生位置，即输出日志信息的语句处于它所在的类的第几行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#m-输出代码中指定的信息，如log-message-中的message"><span class="nav-number"></span> <span class="nav-text">%m 输出代码中指定的信息，如log(message)中的message</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#n-输出一个回车换行符，Windows平台为“rn”，Unix平台为“n”"><span class="nav-number"></span> <span class="nav-text">%n 输出一个回车换行符，Windows平台为“rn”，Unix平台为“n”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#p-输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL。如果是调用debug-输出的，则为DEBUG，依此类推"><span class="nav-number"></span> <span class="nav-text">%p 输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL。如果是调用debug()输出的，则为DEBUG，依此类推</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#r-输出自应用启动到输出该日志信息所耗费的毫秒数"><span class="nav-number"></span> <span class="nav-text">%r 输出自应用启动到输出该日志信息所耗费的毫秒数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#t-输出产生该日志事件的线程名"><span class="nav-number"></span> <span class="nav-text">%t 输出产生该日志事件的线程名</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat内存优化"><span class="nav-number">1.</span> <span class="nav-text">Tomcat内存优化</span></a></li></ol></div>
             
 
           </div>

@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="集成Shiro+Ehcache+Druid+Log4J等遇到的问题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-18T08:53:56.260Z">
+<meta property="og:updated_time" content="2018-08-15T05:25:31.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集成Shiro+Ehcache+Druid+Log4J的问题">
 <meta name="twitter:description" content="集成Shiro+Ehcache+Druid+Log4J等遇到的问题">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-18T16:53:56+08:00">
-                2018-04-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-15T13:25:31+08:00">
+                2018-08-15
               </time>
             
           </span>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,168
+                  2,242
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  10
                 </span>
               
             </div>
@@ -435,6 +435,8 @@
 </li>
 <li><p>数据库连接用druid遇到的问题<br>数据库为 sqlserver2008 驱动为 sqljdbc3.0 开始用的dbcp 后来想用 druid 因为他有各种监控，首先导入jar包<br>用的是最新版本，然后开始启动项目，他奶奶的一直启动不了，tomcat8 跑 错误是 ClassNotFound,很是奇怪，jetty 8 跑，一直卡在 (DruidDataSource.java:785) {dataSource-1} inited 不动，各种百度找了很久，找不到原因,很苦恼明明导入了jar包，而且点击 <code>&lt;bean id=&quot;dataSource&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; init-method=&quot;init&quot; destroy-method=&quot;close&quot;&gt;</code> 也能到 DruidDataSource 这个类里去，就是不知道原因在哪，后来想是不是版本太新了，然后到maven仓库里看了下有好几个版本 然后就改用了 1.0.28版。还是不行，跟上面一样的结果，又是一顿百度啊，还是解决不了，后来改成 1.0.18的时候 用jetty 8 跑竟然可以了，但是tomcat 8 依然是ClassNotFound，一直不知道什么原因。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引入Ehcache，修改用户密码时，退出登陆后，登录时不能及时生效<br>因为用了authenticationCache，设置的是1小时候才会从缓存中移除。所以退出登录后并不能及时生效,需要手动清除该用户的认证缓存。</p>
 </li>
 </ol>
 
@@ -554,7 +556,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -634,7 +636,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.9k</span>
+    <span title="Site words total count">17.1k</span>
   
 </div>
 

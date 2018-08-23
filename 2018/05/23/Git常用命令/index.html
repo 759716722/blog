@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="Git常用命令">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-23T02:54:23.881Z">
+<meta property="og:updated_time" content="2018-08-23T11:24:16.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git常用命令">
 <meta name="twitter:description" content="Git常用命令">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-23T10:54:23+08:00">
-                2018-05-23
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-23T19:24:16+08:00">
+                2018-08-23
               </time>
             
           </span>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  823
+                  939
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -427,8 +427,10 @@
 <p>git rm 我的文件    –在本地仓库删除文件</p>
 <p>git rm -r 我的文件夹   –在本地仓库删除文件夹。此处-r表示递归所有子目录，如果你要删除的，是空的文件夹，此处可以不用带上-r</p>
 <p>git commit -m”我的修改内容注释”  –提交代码到本地分支</p>
-<p>git push origin xxx.git   –推送到远程仓库（比如GitHub）</p>
-<p>git push origin 远端分支名   –提交到远端分支</p>
+<p>git push origin master    –提交到远端仓库,可以把 master 换成你想要推送的任何分支</p>
+<p>git remote add origin xxx.git  –如果还没有连接到某个远程服务器,则先建立远端仓库的别名</p>
+<p>git remote remove origin  –如有原来有个别名（如clone的别人的仓库到本地的情形），则需要先删除别名</p>
+<p>git push -u origin master  – 第一次推送master分支时，加上了 -u参数，Git不但会把内容推送的远程master分支，还会把本地的master分支和远程的master分支关联起来</p>
 <p>git checkout 分支名   –切换分支</p>
 <p>git checkout -t origin/dev 该命令等同于： git checkout -b dev origin/dev  –在本地新建同名的(“dev”)分支，并切换到该分支</p>
 <p>git pull origin 分支名      –将远端的代码拉到本地分支。如果有冲突，可以用git status查看有冲突的文件。pull=fetch+merge.fetch是将远端代码拉下来，merge是合并进去。</p>
@@ -462,8 +464,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/05/22/添加链接服务器实现跨库访问/" rel="next" title="添加链接服务器实现跨库访问">
-                <i class="fa fa-chevron-left"></i> 添加链接服务器实现跨库访问
+              <a href="/blog/2018/05/22/Atomikos分布式事务问题记录/" rel="next" title="Atomikos分布式事务问题记录">
+                <i class="fa fa-chevron-left"></i> Atomikos分布式事务问题记录
               </a>
             
           </div>
@@ -472,8 +474,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2018/05/31/Laydate与Angularjs集成的取值问题/" rel="prev" title="Laydate与Angularjs集成的取值问题">
-                Laydate与Angularjs集成的取值问题 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2018/05/31/Angularjsv1_2_20升级为1_6_8问题/" rel="prev" title="Angularjsv1.2.20升级为1.6.8问题">
+                Angularjsv1.2.20升级为1.6.8问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -555,7 +557,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -635,7 +637,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.9k</span>
+    <span title="Site words total count">17.1k</span>
   
 </div>
 
