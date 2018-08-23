@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="Git常用命令">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-23T11:24:16.538Z">
+<meta property="og:updated_time" content="2018-08-23T12:02:07.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git常用命令">
 <meta name="twitter:description" content="Git常用命令">
@@ -324,7 +324,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-23T19:24:16+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-23T20:02:07+08:00">
                 2018-08-23
               </time>
             
@@ -419,26 +419,26 @@
 <p>git clone <a href="mailto:wyb@xxx.git" target="_blank" rel="noopener">wyb@xxx.git</a>  –如果访问一个Git URL需要用户名和密码，可以在Git URL前加上用户名，并在它们之间加上@符合以表示分割，然后执行git clone命令，git会提示你输入密码</p>
 <p>git branch       –查看本地所有分支</p>
 <p>git branch -r     –查看远程所有分支</p>
-<p>git branch -a     –查看本地和远程所有分支(包括隐藏的)。  一般当前本地分支前带有“*”号且为绿色，远程分支为红色</p>
+<p>git branch -a   –查看本地和远程所有分支(包括隐藏的)。  一般当前本地分支前带有“*”号且为绿色，远程分支为红色</p>
 <p>git branch -D 分支名   –删除分支 （-d  delete：删除，这里的-D delete和force（强制）的快捷键 是彻底删除）</p>
 <p>git clone -b [new_branch_name]  xxx.git  –clone时创建新的分支替代默认Origin HEAD（master） </p>
-<p>git add “文件目录/文件名”和git add . 将需要提交的文件添加进来，一次可以add多个不同的文件，以空格分隔。后者代表当前目录下所有文件提交到暂存区</p>
-<p>git status和git status .  –查看当前项目中代码状态。后者代表的是当前项目所有文件 </p>
+<p>git add “文件目录/文件名”和git add .   –将需要提交的文件添加进来，一次可以add多个不同的文件，以空格分隔。后者代表当前目录下所有文件提交到暂存区</p>
+<p>git status和git status .   –查看当前项目中代码状态。后者代表的是当前项目所有文件 </p>
 <p>git rm 我的文件    –在本地仓库删除文件</p>
-<p>git rm -r 我的文件夹   –在本地仓库删除文件夹。此处-r表示递归所有子目录，如果你要删除的，是空的文件夹，此处可以不用带上-r</p>
-<p>git commit -m”我的修改内容注释”  –提交代码到本地分支</p>
+<p>git rm -r 我的文件夹    –在本地仓库删除文件夹。此处-r表示递归所有子目录，如果你要删除的，是空的文件夹，此处可以不用带上-r</p>
+<p>git commit -m”我的修改内容注释”   –提交代码到本地分支</p>
 <p>git push origin master    –提交到远端仓库,可以把 master 换成你想要推送的任何分支</p>
-<p>git remote add origin xxx.git  –如果还没有连接到某个远程服务器,则先建立远端仓库的别名</p>
-<p>git remote remove origin  –如有原来有个别名（如clone的别人的仓库到本地的情形），则需要先删除别名</p>
+<p>git remote add origin xxx.git   –如果还没有连接到某个远程服务器,则先建立远端仓库的别名</p>
+<p>git remote remove origin   –如有原来有个别名（如clone的别人的仓库到本地的情形），则需要先删除别名</p>
 <p>git push -u origin master  – 第一次推送master分支时，加上了 -u参数，Git不但会把内容推送的远程master分支，还会把本地的master分支和远程的master分支关联起来</p>
-<p>git checkout 分支名   –切换分支</p>
+<p>git checkout 分支名    –切换分支</p>
 <p>git checkout -t origin/dev 该命令等同于： git checkout -b dev origin/dev  –在本地新建同名的(“dev”)分支，并切换到该分支</p>
 <p>git pull origin 分支名      –将远端的代码拉到本地分支。如果有冲突，可以用git status查看有冲突的文件。pull=fetch+merge.fetch是将远端代码拉下来，merge是合并进去。</p>
 <p>git log    –显示从最近到最远的提交日志，如果嫌输出信息太多，看得眼花缭乱的，可以试试加上–pretty=oneline参数。需要友情提示的是，你看到的一大串类似2e70fd…376315的是commit id（版本号）。在 Git中，用HEAD表示当前版本，也就是最新的提交commit id，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。</p>
 <p>git reset .    –取消上次修改返回到上次提交状态</p>
-<p>git reset –hard HEAD^   –把当前版本回退到上一个版本</p>
-<p>git reset –hard 2e70fdf   –指定回到某个版本</p>
-<p>git reflog    –记录你的每一次命令</p>
+<p>git reset      –hard HEAD^   –把当前版本回退到上一个版本</p>
+<p>git reset      –hard 2e70fdf   –指定回到某个版本</p>
+<p>git reflog     –记录你的每一次命令</p>
 <p>详情参见<br><a href="https://blog.csdn.net/afei__/article/details/51476529" target="_blank" rel="noopener">Git常用命令</a><br><a href="https://blog.csdn.net/tomatozaitian/article/details/73515849" target="_blank" rel="noopener">Git 常用命令总结</a></p>
 
       
@@ -464,8 +464,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/05/22/添加链接服务器实现跨库访问/" rel="next" title="添加链接服务器实现跨库访问">
-                <i class="fa fa-chevron-left"></i> 添加链接服务器实现跨库访问
+              <a href="/blog/2018/05/22/Atomikos分布式事务问题记录/" rel="next" title="Atomikos分布式事务问题记录">
+                <i class="fa fa-chevron-left"></i> Atomikos分布式事务问题记录
               </a>
             
           </div>
