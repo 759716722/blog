@@ -86,17 +86,17 @@
 
 
 
-<meta name="description" content="REST风格的接口设计">
+<meta name="description" content="匿名内部类创建线程的两种方式及区别">
 <meta property="og:type" content="article">
-<meta property="og:title" content="REST风格的接口设计">
-<meta property="og:url" content="https://759716722.github.io/blog/2018/06/22/REST风格的接口设计/index.html">
+<meta property="og:title" content="匿名内部类创建线程的两种方式及区别">
+<meta property="og:url" content="https://759716722.github.io/blog/2018/09/21/匿名内部类创建线程的两种方式及区别/index.html">
 <meta property="og:site_name" content="魏有标的博客">
-<meta property="og:description" content="REST风格的接口设计">
+<meta property="og:description" content="匿名内部类创建线程的两种方式及区别">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-18T03:35:27.091Z">
+<meta property="og:updated_time" content="2018-09-25T02:27:44.642Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="REST风格的接口设计">
-<meta name="twitter:description" content="REST风格的接口设计">
+<meta name="twitter:title" content="匿名内部类创建线程的两种方式及区别">
+<meta name="twitter:description" content="匿名内部类创建线程的两种方式及区别">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://759716722.github.io/blog/2018/06/22/REST风格的接口设计/"/>
+  <link rel="canonical" href="https://759716722.github.io/blog/2018/09/21/匿名内部类创建线程的两种方式及区别/"/>
 
 
 
 
 
-  <title>REST风格的接口设计 | 魏有标的博客</title>
+  <title>匿名内部类创建线程的两种方式及区别 | 魏有标的博客</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/06/22/REST风格的接口设计/">
+    <link itemprop="mainEntityOfPage" href="https://759716722.github.io/blog/blog/2018/09/21/匿名内部类创建线程的两种方式及区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyb">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">REST风格的接口设计</h1>
+          <h1 class="post-title" itemprop="name headline">匿名内部类创建线程的两种方式及区别</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T17:15:10+08:00">
-                2018-06-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-21T16:51:11+08:00">
+                2018-09-21
               </time>
             
 
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-18T11:35:27+08:00">
-                2018-07-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-25T10:27:44+08:00">
+                2018-09-25
               </time>
             
           </span>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  236
+                  226
                 </span>
               
 
@@ -411,14 +411,47 @@
       
 
       
-        <h2 id="REST风格的接口设计"><a href="#REST风格的接口设计" class="headerlink" title="REST风格的接口设计"></a>REST风格的接口设计</h2><a id="more"></a>
-<p>简单来讲就是：URL定位资源，用HTTP（GET，POST，PUT，PATCH，DELETE）描述操作。</p>
-<p>例如我们对用户进行操作时，根据操作的方式不同定义了以下的这些接口，这些接口中的动名词通常对应后台的某个函数。</p>
-<p>增加用户            /user/createUser<br>删除用户            /user/deleteUser<br>修改用户            /user/modifyUser<br>查找用户            /user/getUser</p>
-<p>REST风格的接口是不应该出现get/create/modify/delete这些动词的,可以通过HTTP的几个请求类型来区分不同的业务。GET，POST，PUT，PATCH，DELETE，这几个方法都可以与对数据的 CRUD 操作对应起来。</p>
-<p>下面我们对users设计REST风格的接口：</p>
-<p>增加用户            /sys/users      接口类型：POST<br>删除用户            /sys/users      接口类型：DELETE<br>修改用户            /sys/users      接口类型：PUT/PATCH<br>查找用户            /sys/users      接口类型：GET</p>
-<p><a href="https://github.com/aisuhua/restful-api-design-references" target="_blank" rel="noopener">REST的更多详细规范</a></p>
+        <h2 id="匿名内部类创建线程的两种方式及区别"><a href="#匿名内部类创建线程的两种方式及区别" class="headerlink" title="匿名内部类创建线程的两种方式及区别"></a>匿名内部类创建线程的两种方式及区别</h2><a id="more"></a>
+<p>创建线程的两种方式，继承Thread类，实现Runnable接口。通过匿名类创建线程时一直都是以下两种方式用，也不知道啥区别。</p>
+<pre><code class="java">方式一（直接 <span class="keyword">new</span> Thread的匿名类）：
+   <span class="keyword">new</span> Thread(){
+           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{
+           System.out.println(<span class="string">"run of thread"</span>);
+       }
+   }.start();
+
+方式二(Thread类中传入Runnable子类对象)：
+   <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {
+       <span class="meta">@Override</span>
+       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{
+           System.out.println(<span class="string">"run of runnable"</span>);
+       }
+
+   }).start();
+</code></pre>
+<p>区别：<br>   对于 Thread(Runnable target) 而言，只要是重写了Thread自己的run()方法，就不会调用Runnable实现的run()方法。除非在Thread自己的run()方法 加入super.run()执行父类的 run() 方法 如下所示：</p>
+<pre><code class="java">   <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {
+       <span class="meta">@Override</span>
+       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{
+           System.out.println(<span class="string">"run of runnable"</span>);
+       }
+
+   }{
+       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{
+           System.out.println(<span class="string">"run of thread"</span>);
+           <span class="keyword">super</span>.run(); <span class="comment">// 加入该句 会执行Runnable 的 run()方法</span>
+       }
+   }).start();
+
+原因:Thread run方法的源码
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{
+        <span class="keyword">if</span> (target != <span class="keyword">null</span>) {
+            target.run();
+        }
+    }
+</code></pre>
 
       
     </div>
@@ -443,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/06/22/Spring Boot问题记录/" rel="next" title="Spring Boot问题记录">
-                <i class="fa fa-chevron-left"></i> Spring Boot问题记录
+              <a href="/blog/2018/09/21/AOP方式记录操作日志/" rel="next" title="AOP方式记录操作日志">
+                <i class="fa fa-chevron-left"></i> AOP方式记录操作日志
               </a>
             
           </div>
@@ -452,10 +485,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/07/12/Log4j分别打印不同级别的日志文件/" rel="prev" title="Log4j分别打印不同级别的日志文件">
-                Log4j分别打印不同级别的日志文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -582,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#REST风格的接口设计"><span class="nav-number">1.</span> <span class="nav-text">REST风格的接口设计</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#匿名内部类创建线程的两种方式及区别"><span class="nav-number">1.</span> <span class="nav-text">匿名内部类创建线程的两种方式及区别</span></a></li></ol></div>
             
 
           </div>
