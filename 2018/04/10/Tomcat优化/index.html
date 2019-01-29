@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="Tomcat优化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T08:45:06.755Z">
+<meta property="og:updated_time" content="2018-11-07T01:29:07.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat优化">
 <meta name="twitter:description" content="Tomcat优化">
@@ -358,8 +358,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-23T16:45:06+08:00">
-                2018-10-23
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T09:29:07+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,236
+                  1,663
                 </span>
               
 
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  7
                 </span>
               
             </div>
@@ -451,20 +451,21 @@
 
       
         <h2 id="Tomcat优化"><a href="#Tomcat优化" class="headerlink" title="Tomcat优化"></a>Tomcat优化</h2><a id="more"></a>
-<h4 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h4><p>JAVA_OPTS参数说明：<br>-server                         启用jdk 的 server 版<br>-Xms                                 JVM初始分配的最小堆内存  默认是物理内存的1/64<br>-Xmx                                 JVM最大允许分配的堆内存，按需分配  默认是物理内存的1/4<br>-XX: PermSize             内存永久保留区域 JVM初始分配的非堆内存<br>-XX:MaxPermSize            内存最大永久保留区域 JVM最大允许分配的非堆内存，按需分配</p>
+<h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h3><p>JAVA_OPTS参数说明：<br>-server                         启用jdk 的 server 版<br>-Xms                                 JVM初始分配的最小堆内存  默认是物理内存的1/64<br>-Xmx                                 JVM最大允许分配的堆内存，按需分配  默认是物理内存的1/4<br>-XX: PermSize             内存永久保留区域 JVM初始分配的非堆内存<br>-XX:MaxPermSize            内存最大永久保留区域 JVM最大允许分配的非堆内存，按需分配</p>
 <p>JVM初始分配的堆内存由-Xms指定，默认是物理内存的1/64；<br>JVM最大分配的堆内存由-Xmx指定，默认是物理内存的1/4。默认空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制；<br>空余堆内存大于70%时，JVM会减少堆直到-Xms的最小限制。因此服务器一般设置-Xms、-Xmx 相等以避免在每次GC 后调整堆的大小。</p>
-<p>1.java.lang.OutOfMemoryError: Java heap space<br>解释： Heap size 设置 JVM堆的设置是指java程序运行过程中JVM可以调配使用的内存空间的设置.JVM在启动的时候会自动设置Heap size的值，其初始空间(即-Xms)是物理内存的1/64，最大空间(-Xmx)是物理内存的1/4。可以利用JVM提供的-Xmn -Xms -Xmx等选项可进行设置。Heap size 的大小是Young Generation 和Tenured Generaion 之和。<br>提示：在JVM中如果98％的时间是用于GC且可用的Heap size 不足2％的时候将抛出此异常信息。 Heap Size 最大不要超过可用物理内存的80％，一般的要将-Xms和-Xmx选项设置为相同，而-Xmn为1/4的-Xmx值。 </p>
+<p>1.java.lang.OutOfMemoryError: Java heap space<br>解释： Heap size 设置 JVM堆的设置是指java程序运行过程中JVM可以调配使用的内存空间的设置.JVM在启动的时候会自动设置Heap size的值，其初始空间(即-Xms)是物理内存的1/64，最大空间(-Xmx)是物理内存的1/4。可以利用JVM提供的-Xmn -Xms -Xmx等选项可进行设置。Heap size 的大小是Young Generation 和Tenured Generaion 之和。<br>提示：在JVM中如果98％的时间是用于GC且可用的Heap size 不足2％的时候将抛出此异常信息。Heap Size最大不要超过可用物理内存的80％，一般的要将-Xms和-Xmx选项设置为相同，而-Xmn为1/4的-Xmx值。 </p>
 <p>2.java.lang.OutOfMemoryError: PermGen space 原因： PermGen space的全称是Permanent Generation space,是指内存的永久保存区域，这块内存主要是被JVM存放Class和Meta信息的,Class在被Loader时就会被放到PermGen space中，它和存放类实例(Instance)的Heap区域不同,GC(Garbage Collection)不会在主程序运行期对PermGen space进行清理，所以如果你的应用中有很CLASS的话,就很可能出现PermGen space错误</p>
 <p>参考：<br><a href="https://blog.csdn.net/crazy_kis/article/details/7535932" target="_blank" rel="noopener">内存溢出之Tomcat内存配置</a><br><a href="https://blog.csdn.net/starwind_/article/details/52938043" target="_blank" rel="noopener">配置tomcat服务器内存大小中的Xms、Xmx、PermSize、MaxPermSize 详解</a></p>
 <p>默认不设置情况下JVM信息如下（本机6G内存）：<br>{“flag”:”Y”,”data”:{“totalMemory”:”390.00MB”,”maxMemory”:”1346.00MB”,”freeMemory”:”265.00MB”,”cpuNum”:4}}</p>
 <p>在catalina.bat最前面增加 set JAVA_OPTS=-Xms128m -Xmx512m 用startup.bat启动tomcat。JVM信息如下<br>{“flag”:”Y”,”data”:{“totalMemory”:”220.00MB”,”maxMemory”:”455.00MB”,”freeMemory”:”105.00MB”,”cpuNum”:4}}<br>OK设置生效</p>
-<h4 id="利用windows的系统服务启动tomcat服务"><a href="#利用windows的系统服务启动tomcat服务" class="headerlink" title="利用windows的系统服务启动tomcat服务"></a>利用windows的系统服务启动tomcat服务</h4><p>利用windows的系统服务启动tomcat服务,上面的设置就不生效<br>windows服务运行的是bin\tomcat.exe.他读取注冊表中的值,而不是catalina.bat的设置</p>
-<p>如果遇到点击tomcat8.exe打不开，进入Tomcat\bin\安装目录，输入： service.bat install 即可。</p>
+<h3 id="利用windows的系统服务启动tomcat服务"><a href="#利用windows的系统服务启动tomcat服务" class="headerlink" title="利用windows的系统服务启动tomcat服务"></a>利用windows的系统服务启动tomcat服务</h3><p>利用windows的系统服务启动tomcat服务,上面的设置就不生效<br>windows服务运行的是bin\tomcat.exe.他读取注冊表中的值,而不是catalina.bat的设置<br>如果遇到点击tomcat8.exe打不开，进入Tomcat\bin\安装目录，输入： service.bat install 即可。</p>
 <p>cmd–&gt;services.msc(或 计算机–&gt;管理–&gt;服务和应用程序–&gt; 服务)，显示已经有Tomcat服务了。再次双击Tomcat8.exe，就可以运行了。<br>JVM信息如下<br>{“flag”:”Y”,”data”:{“totalMemory”:”153.00MB”,”maxMemory”:”228.00MB”,”freeMemory”:”111.00MB”,”cpuNum”:4}}</p>
-<p>解决的方法:<br>改动注冊表 HKEY_LOCAL_MACHINE\SOFTWARE\Apache Software Foundation\Tomcat Service Manager\Tomcat5\Parameters\Java\Options<br>找半天没注册表里找不到该信息，经查找说64位系统，tomcat的注册表信息是写在<br>HKEY_LOCAL_MACHINE/SOFTWARE/Wow6432Node/Apache Software Foundation/Procrun 2.0/Tomcat8/Parameters/Java/<br>Options 原值：<br>-Dcatalina.home=F:\apache-tomcat-8.0.52<br>-Dcatalina.base=F:\apache-tomcat-8.0.52<br>-Dignore.endorsed.dirs=F:\apache-tomcat-8.0.52\endorsed<br>-Djava.io.tmpdir=F:\apache-tomcat-8.0.52\temp<br>-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager<br>-Djava.util.logging.config.file=F:\apache-tomcat-8.0.52\conf\logging.properties</p>
-<p>经尝试，在Options后加入  -Xms128m  -Xmx512m 没效果 ，JVM信息如下<br>{“flag”:”Y”,”data”:{“totalMemory”:”154.00MB”,”maxMemory”:”228.00MB”,”freeMemory”:”111.00MB”,”cpuNum”:4}}</p>
-<p>注册表信息 HKEY_LOCAL_MACHINE/SOFTWARE/Wow6432Node/Apache Software Foundation/Procrun 2.0/Tomcat8/Parameters/Java<br>将 JVM的 jvmMs  jvmMx 单独在外面设置了，所以只需该相应的值即可。重起tomcat服务,设置生效。<br>JVM信息如下：<br>{“flag”:”Y”,”data”:{“totalMemory”:”232.00MB”,”maxMemory”:”455.00MB”,”freeMemory”:”119.00MB”,”cpuNum”:4}}</p>
-<h4 id="tomcat启用gzip压缩，提升web性能"><a href="#tomcat启用gzip压缩，提升web性能" class="headerlink" title="tomcat启用gzip压缩，提升web性能"></a>tomcat启用gzip压缩，提升web性能</h4><p>在server.xml的配置文件中加入如下配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	<span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8081"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">redirectPort</span>=<span class="string">"8443"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">compression</span>=<span class="string">"on"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">compressionMinSize</span>=<span class="string">"100"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">noCompressionUserAgents</span>=<span class="string">"gozilla, traviata"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">compressableMimeType</span>=<span class="string">"text/html,text/xml,text/javascript,application/x-javascript,application/javascript,text/css,text/plain,image/jpeg,application/json"</span>/&gt;</span></span><br><span class="line">              /&gt;</span><br><span class="line">   <span class="comment">&lt;!-- 参数说明:</span></span><br><span class="line"><span class="comment">   			compression="on"  打开压缩功能 </span></span><br><span class="line"><span class="comment">   			compressionMinSize="100"  启用压缩的输出内容大小，当被压缩对象的大小&gt;=该值时才会被压缩，默认值为2KB </span></span><br><span class="line"><span class="comment">   			noCompressionUserAgents="gozilla, traviata"  对于以下的浏览器，不启用压缩 </span></span><br><span class="line"><span class="comment">   			compressableMimeType="text/html,text/xml,text/javascript,application/x-javascript,application/javascript,text/css,text/plain,image/jpeg,application/json"  压缩类型 </span></span><br><span class="line"><span class="comment">   			如果不生效的话则加入 useSendfile="false" </span></span><br><span class="line"><span class="comment">   --&gt;</span></span><br><span class="line">外网可通过站长工具：http://tool.chinaz.com/gzips/ 检测是否开启</span><br><span class="line">内网的话就F12 看请求信息： Accept-Ranges: bytes Content-Encoding: gzip Content-Type: text/html  出现Content-Encoding : gzip 表明压缩生效</span><br></pre></td></tr></table></figure></p>
+<p>解决的方法:<br>改动注冊表 <code>HKEY_LOCAL_MACHINE\SOFTWARE\Apache Software Foundation\Tomcat Service Manager\Tomcat5\Parameters\Java\Options</code><br>找半天注册表里找不到该信息，经查找说64位系统，tomcat的注册表信息是写在<br><code>HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Apache Software Foundation\Procrun 2.0\Tomcat8\Parameters\Java\Options</code><br>Options 原值：<br>-Dcatalina.home=F:\apache-tomcat-8.0.52<br>-Dcatalina.base=F:\apache-tomcat-8.0.52<br>-Dignore.endorsed.dirs=F:\apache-tomcat-8.0.52\endorsed<br>-Djava.io.tmpdir=F:\apache-tomcat-8.0.52\temp<br>-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager<br>-Djava.util.logging.config.file=F:\apache-tomcat-8.0.52\conf\logging.properties</p>
+<p>经尝试，在Options后加入  -Xms128m  -Xmx512m 没效果 ，JVM信息如下<br>{“flag”:”Y”,”data”:{“totalMemory”:”154.00MB”,”maxMemory”:”228.00MB”,”freeMemory”:”111.00MB”,”cpuNum”:4}}<br>原来注册表中将 JVM的 jvmMs  jvmMx 单独在外面设置了，所以只需该相应的值即可。重起tomcat服务,设置生效。<br>JVM信息如下：<br>{“flag”:”Y”,”data”:{“totalMemory”:”232.00MB”,”maxMemory”:”455.00MB”,”freeMemory”:”119.00MB”,”cpuNum”:4}}</p>
+<h3 id="tomcat启用gzip压缩，提升web性能"><a href="#tomcat启用gzip压缩，提升web性能" class="headerlink" title="tomcat启用gzip压缩，提升web性能"></a>tomcat启用gzip压缩，提升web性能</h3><p>在server.xml的配置文件中加入如下配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	<span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8081"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">redirectPort</span>=<span class="string">"8443"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">compression</span>=<span class="string">"on"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">compressionMinSize</span>=<span class="string">"100"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">noCompressionUserAgents</span>=<span class="string">"gozilla, traviata"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">compressableMimeType</span>=<span class="string">"text/html,text/xml,text/javascript,application/x-javascript,application/javascript,text/css,text/plain,image/jpeg,application/json"</span>/&gt;</span></span><br><span class="line">              /&gt;</span><br><span class="line">   <span class="comment">&lt;!-- 参数说明:</span></span><br><span class="line"><span class="comment">   			compression="on"  打开压缩功能 </span></span><br><span class="line"><span class="comment">   			compressionMinSize="100"  启用压缩的输出内容大小，当被压缩对象的大小&gt;=该值时才会被压缩，默认值为2KB </span></span><br><span class="line"><span class="comment">   			noCompressionUserAgents="gozilla, traviata"  对于以下的浏览器，不启用压缩 </span></span><br><span class="line"><span class="comment">   			compressableMimeType="text/html,text/xml,text/javascript,application/x-javascript,application/javascript,text/css,text/plain,image/jpeg,application/json"  压缩类型 </span></span><br><span class="line"><span class="comment">   			如果不生效的话则加入 useSendfile="false" </span></span><br><span class="line"><span class="comment">   --&gt;</span></span><br><span class="line">外网可通过站长工具：http://tool.chinaz.com/gzips/ 检测是否开启</span><br><span class="line">内网的话就F12 看请求信息： Accept-Ranges: bytes Content-Encoding: gzip Content-Type: text/html  出现Content-Encoding : gzip 表明压缩生效</span><br></pre></td></tr></table></figure></p>
+<h3 id="一个tomcat部署多个应用还是一个tomcat一个应用？"><a href="#一个tomcat部署多个应用还是一个tomcat一个应用？" class="headerlink" title="一个tomcat部署多个应用还是一个tomcat一个应用？"></a>一个tomcat部署多个应用还是一个tomcat一个应用？</h3><p>结论：占用资源比较大，需要稳定性等，尽量单独部署一个tomcat实例，其他小应用、要求不高，出点问题也能接受的就放在一个tomcat实例里，省事方便管理、维护。<br>理由：<br>1.一个tomcat多个应用<br>优势 ：<br>安装管理、监控都方便，只需要安装一个 Tomcat，所有的操作都指向同一个实例即可。<br>省内存 (每个 Tomcat 都会有内存的 footprint，即使没有应用部署运行)<br>省去额外的文件系统 (logs, tomcat installation, temp directory)<br>省去 nagios 监控配置<br>省去不少独立的端口 (security considerations)<br>省去每个都打安全补丁<br>劣势：<br>多个应用共用 Tomcat 的内存，容易互相影响。如果有一个应用占用堆太多，频繁的 GC 也会使其他应用跟着暂停。<br>多个应用部署在一起，启动时间太长<br>多个应用部署在一起，一个出了问题,会影响到其他的应用 (OOM, 线程数打满 等等)<br>如果你需要在线上进行应用heap, 线程的dump， cpu使用等诊断分析，独立部署则不会影响到其他应用</p>
+<p>2.一个tomcat一个应用<br>优势 ：<br>多个应用之间 Tomcat 的内存互相隔离，互相之间无影响。一个应用crash，频繁GC，都只影响其自己，影响面缩小。<br>劣势：<br>相比一个实例，安装管理、监控都较繁琐一些。可以通过安装一个实例，设置不同的CATALINA_HOME来简化一些操作。</p>
+<p>参见<br>[Tomcat应用部署,是否要一个萝卜一个坑?]<a href="https://mp.weixin.qq.com/s/z25yP3mPC_eG2UT35tOP1w?scene=25#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/z25yP3mPC_eG2UT35tOP1w?scene=25#wechat_redirect</a></p>
 
       
     </div>
@@ -628,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat优化"><span class="nav-number">1.</span> <span class="nav-text">Tomcat优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存优化"><span class="nav-number">1.0.1.</span> <span class="nav-text">内存优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用windows的系统服务启动tomcat服务"><span class="nav-number">1.0.2.</span> <span class="nav-text">利用windows的系统服务启动tomcat服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tomcat启用gzip压缩，提升web性能"><span class="nav-number">1.0.3.</span> <span class="nav-text">tomcat启用gzip压缩，提升web性能</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat优化"><span class="nav-number">1.</span> <span class="nav-text">Tomcat优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存优化"><span class="nav-number">1.1.</span> <span class="nav-text">内存优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用windows的系统服务启动tomcat服务"><span class="nav-number">1.2.</span> <span class="nav-text">利用windows的系统服务启动tomcat服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat启用gzip压缩，提升web性能"><span class="nav-number">1.3.</span> <span class="nav-text">tomcat启用gzip压缩，提升web性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个tomcat部署多个应用还是一个tomcat一个应用？"><span class="nav-number">1.4.</span> <span class="nav-text">一个tomcat部署多个应用还是一个tomcat一个应用？</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -648,7 +649,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -662,7 +663,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">33.4k</span>
+    <span title="Site words total count">34.1k</span>
   
 </div>
 
