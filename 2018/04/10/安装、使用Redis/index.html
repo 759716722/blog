@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="魏有标的博客">
 <meta property="og:description" content="使用Redis过程中的问题收集">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-20T08:30:46.308Z">
+<meta property="og:updated_time" content="2019-02-14T08:22:59.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装、使用Redis">
 <meta name="twitter:description" content="使用Redis过程中的问题收集">
@@ -358,8 +358,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-20T16:30:46+08:00">
-                2018-07-20
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-14T16:22:59+08:00">
+                2019-02-14
               </time>
             
           </span>
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  236
+                  698
                 </span>
               
 
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -453,6 +453,7 @@
         <h2 id="使用Redis过程中的问题收集"><a href="#使用Redis过程中的问题收集" class="headerlink" title="使用Redis过程中的问题收集"></a>使用Redis过程中的问题收集</h2><a id="more"></a>
 <p><a href="http://download.redis.io/releases/" target="_blank" rel="noopener">各版本下载地址</a><br><a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="noopener">windows版本下载</a></p>
 <p>1.windows下使用Redis<br>下载相关包后，右键解压Redis ZIP包。<br>cmd 进入到redis目录下，使用 redis-server.exe redis.windows.conf  启动redis服务，doc窗口不要关闭，关闭服务就停了。127.0.0.1:6379 默认是6379端口，可在redis.windows.conf中更改，同样可以搜索 SECURITY 找到 requirepass 设置密码，eg: requirepass 123456<br>新打开一个doc窗口进入到redis目录下，使用 redis-cli.exe 自带的客户端工具测试，eg: set name qq 如果设置密码则需要认证，get name 即可获得 qq,以下是一些基础命令：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keys *  或  keys "*"   --查看所有key</span><br><span class="line">keys "miao*"           --查看匹配前缀的keys</span><br><span class="line">flushdb                --清空redis</span><br><span class="line">randomkey              --随机取出一个key</span><br><span class="line"><span class="built_in">type</span> key               --查看key的类型</span><br><span class="line">dbsize                 --查看数据库中key的数量</span><br><span class="line">info                   --查看服务器信息</span><br></pre></td></tr></table></figure></p>
+<p>2.linux下安装Redis<br>wget <a href="http://download.redis.io/releases/redis-5.0.3.tar.gz" target="_blank" rel="noopener">http://download.redis.io/releases/redis-5.0.3.tar.gz</a> 使用wget命令下载包<br>tar xzf /home/wyb/redis-5.0.3.tar.gz  然后解压<br>cd redis-5.0.3    进入redis目录<br>make    安装 需要安装c/c++的编译器 yum install gcc<br>编译过程中提示 zmalloc.h:50:31: 致命错误：jemalloc/jemalloc.h：没有那个文件或目录<br>在readme中有说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">Allocator</span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">Selecting a non-default memory allocator when building Redis is done by setting</span><br><span class="line">the `MALLOC` environment variable. Redis is compiled and linked against libc</span><br><span class="line">malloc by default, with the exception of jemalloc being the default on Linux</span><br><span class="line">systems. This default was picked because jemalloc has proven to have fewer</span><br><span class="line">fragmentation problems than libc malloc.</span><br><span class="line"></span><br><span class="line">To force compiling against libc malloc, use:</span><br><span class="line"></span><br><span class="line">    % make MALLOC=libc</span><br><span class="line"></span><br><span class="line">To compile against jemalloc on Mac OS X systems, use:</span><br><span class="line"></span><br><span class="line">    % make MALLOC=jemalloc</span><br><span class="line">``` </span><br><span class="line">使用如下命令编译即可：make MALLOC=libc</span><br><span class="line">编译完成后redis中所有的命令都在redis安装目录中的src子目录下，其中比较重要的是redis-server，redis-sentinel，redis-cli。</span><br><span class="line"></span><br><span class="line">3.主从模式的配置</span><br><span class="line">mkdir redis 创建redis文件夹 用于存放可执行文件以及redis实例配置文件等</span><br><span class="line">cp redis-5.0.3/src/redis-server redis-5.0.3/src/redis-sentinel redis-5.0.3/src/redis-cli redis 将三个可执行文件复制到redis目录下</span><br><span class="line">mkdir master-6379 slave-6380 slave-6381 新建三个目录，分别用于放redis实例的配置文件</span><br><span class="line">新建三个配置文件（一个主实例两个从实例）master-6379.conf  slave-6380.conf  slave-6381.conf</span><br><span class="line">``` js</span><br><span class="line">master-6379.conf</span><br><span class="line">bind 127.0.0.1</span><br><span class="line">port 6379</span><br><span class="line">logfile &quot;6379.log&quot;</span><br><span class="line">dbfilename &quot;dump-6379.rdb&quot;</span><br><span class="line"></span><br><span class="line">slave-6380.conf</span><br><span class="line">bind 127.0.0.1</span><br><span class="line">port 6380</span><br><span class="line">logfile &quot;6380.log&quot;</span><br><span class="line">dbfilename &quot;dump-6380.rdb&quot;</span><br><span class="line">slaveof 127.0.0.1 6379</span><br><span class="line"></span><br><span class="line">slave-6381.conf</span><br><span class="line">bind 127.0.0.1</span><br><span class="line">port 6381</span><br><span class="line">logfile &quot;6381.log&quot;</span><br><span class="line">dbfilename &quot;dump-6381.rdb&quot;</span><br><span class="line">slaveof 127.0.0.1 6379</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -650,7 +651,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.1k</span>
+    <span title="Site words total count">34.6k</span>
   
 </div>
 
